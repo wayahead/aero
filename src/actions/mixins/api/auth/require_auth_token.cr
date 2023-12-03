@@ -13,7 +13,7 @@ module Api::Auth::RequireAuthToken
 
   private def auth_error_json
     ErrorSerializer.new(
-      message: "Not authenticated.",
+      message: "Not authenticated",
       details: auth_error_details
     )
   end

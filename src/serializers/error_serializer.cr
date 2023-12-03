@@ -9,6 +9,15 @@ class ErrorSerializer < BaseSerializer
   end
 
   def render
-    {message: @message, param: @param, details: @details}
+    case {@details.nil?, @param.nil?}
+    when {false, false}
+      {message: @message, param: @param, details: @details}
+    when {false, true}
+      {message: @message, details: @details}
+    when {true, false}
+      {message: @message, param: @param}
+    when {true, true}
+      {message: @message}
+    end
   end
 end

@@ -11,6 +11,15 @@ class Errors::Show < Lucky::ErrorAction
     error_json "Not found", status: 404
   end
 
+  # When a Crystal TypeCastError is raised, the json data in Http Request
+  # is incorrected, so show a helpful error with details.
+  def render(error : TypeCastError)
+    error_json \
+      message: "Bad request",
+      details: "parameters in request is incorrect.",
+      status: 400
+  end
+
   # When an InvalidOperationError is raised, show a helpful error with the
   # param that is invalid, and what was wrong with it.
   def render(error : Avram::InvalidOperationError)

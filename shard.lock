@@ -8,6 +8,14 @@ shards:
     git: https://github.com/luckyframework/avram.git
     version: 1.1.1
 
+  awscr-s3:
+    git: https://github.com/taylorfinnell/awscr-s3.git
+    version: 0.8.3
+
+  awscr-signer:
+    git: https://github.com/taylorfinnell/awscr-signer.git
+    version: 0.8.2
+
   backtracer:
     git: https://github.com/sija/backtracer.cr.git
     version: 1.2.2
@@ -27,6 +35,10 @@ shards:
   carbon_sendgrid_adapter:
     git: https://github.com/luckyframework/carbon_sendgrid_adapter.git
     version: 0.4.0
+
+  content_disposition:
+    git: https://github.com/jetrockets/content_disposition.cr.git
+    version: 1.2.0
 
   cry:
     git: https://github.com/luckyframework/cry.git
@@ -91,6 +103,10 @@ shards:
   shell-table:
     git: https://github.com/luckyframework/shell-table.cr.git
     version: 0.9.3
+
+  shrine:
+    git: https://github.com/jetrockets/shrine.cr.git
+    version: 0.6.5+git.commit.da3c080b72469b0ce1b236f1574f4b90d249ef46
 
   splay_tree_map:
     git: https://github.com/wyhaines/splay_tree_map.cr.git

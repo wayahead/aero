@@ -12,12 +12,11 @@ class Errors::Show < Lucky::ErrorAction
   end
 
   # When a Crystal TypeCastError is raised, the json data in Http Request
-  # is incorrected, so show a helpful error with details.
+  # is unexpected, so show a helpful error with details.
   def render(error : TypeCastError)
     error_json \
-      message: "Bad request",
-      details: "parameters in request is incorrect.",
-      status: 400
+      message: "Type cast failed",
+      status: 500
   end
 
   # When an InvalidOperationError is raised, show a helpful error with the

@@ -20,7 +20,8 @@ user_agents = [
 random_user_agent = random.choice(user_agents)
 headers = {
   'User-Agent': random_user_agent,
-  'Content-type': 'application/json'
+  'Content-type': 'application/json',
+  'Origin': 'windmill.com'
 }
 
 try:
@@ -52,6 +53,7 @@ random_user_agent = random.choice(user_agents)
 headers = {
   'User-Agent': random_user_agent,
   'Content-type': 'application/json',
+  'Origin': 'windmill.com',
   'Authorization': "Bearer "+json_data["token"]
 }
 

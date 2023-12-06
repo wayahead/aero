@@ -10,6 +10,8 @@ class Customer < BaseModel
     column status : String
     column description : String?
     column preferences : Customer::Preferences?, serialize: true
+
+    has_many users : User
   end
 
   def active?

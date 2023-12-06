@@ -17,7 +17,7 @@ class User < BaseModel
     column description : String?
     column preferences : User::Preferences?, serialize: true
 
-    belongs_to customer : Customer
+    belongs_to customer : Customer?
   end
 
   def emailable : Carbon::Address

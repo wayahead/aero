@@ -7,6 +7,7 @@ import requests
 url = 'http://127.0.0.1:3000/api/v1/sign_ups'
 data = json.dumps({
   "user": {
+    "name": "wayahead2009",
     "email": "wayahead2009@live.com",
     "password": "WqA1yT2z",
     "password_confirmation": "WqA1yT2z"

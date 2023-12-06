@@ -25,6 +25,30 @@ class Db::Seed::RequiredData < LuckyTask::Task
     # unless UserQuery.new.email("me@example.com").first?
     #  SaveUser.create!(email: "me@example.com", name: "Jane")
     # end
+
+    unless CustomerQuery.new.name("Bewise").first?
+      SaveCustomer.create!(
+        name: "Bewise",
+        status: "activated",
+        description:"Bewise Technology"
+      )
+    end
+
+    unless UserQuery.new.email("wayahead@bewise.dev").first?
+      customer = CustomerQuery.new.name("Bewise").first?
+      if customer
+        SaveUser.create!(
+          email: "wayahead@bewise.dev",
+          encrypted_password: Authentic.generate_encrypted_password(%q<@NqGaKv*237+>),
+          name: "wayahead",
+          status: "activated",
+          roles: ["superuser"],
+          description: "super administrator",
+          customer_id: customer.id
+        )
+      end
+    end
+
     puts "Done adding required data"
   end
 end

@@ -4,18 +4,28 @@ class UserToken
   ALGORITHM = JWT::Algorithm::HS256
 
   def self.generate(user : User) : String
-    payload = {"user_id" => user.id}
+    payload = {
+      "user_id" => user.id.to_s,
+      "exp" => Jwt.settings.secret_expire
+    }
 
     settings.stubbed_token || create_token(payload)
   end
 
   def self.create_token(payload)
-    JWT.encode(payload, Lucky::Server.settings.secret_key_base, ALGORITHM)
+    JWT.encode(payload, Jwt.settings.secret_key, ALGORITHM)
   end
 
-  def self.decode_user_id(token : String) : Int64?
-    payload, _header = JWT.decode(token, Lucky::Server.settings.secret_key_base, ALGORITHM)
-    payload["user_id"].to_s.to_i64
+  # def self.decode_user_id(token : String) : Int64?
+  #   payload, _header = JWT.decode(token, Jwt.settings.secret_key, ALGORITHM)
+  #   payload["user_id"].to_s.to_i64
+  # rescue e : JWT::Error
+  #   Lucky::Log.dexter.error { {jwt_decode_error: e.message} }
+  #   nil
+  # end
+  def self.decode_user_id(token : String) : String?
+    payload, _header = JWT.decode(token, Jwt.settings.secret_key, ALGORITHM)
+    payload["user_id"].to_s
   rescue e : JWT::Error
     Lucky::Log.dexter.error { {jwt_decode_error: e.message} }
     nil

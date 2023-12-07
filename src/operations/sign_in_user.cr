@@ -34,7 +34,7 @@ class SignInUser < Avram::Operation
       # Usually ok to say that an email is not in the system:
       # https://kev.inburke.com/kevin/invalid-username-or-password-useless/
       # https://github.com/luckyframework/lucky_cli/issues/192
-      email.add_error "is not in system"
+      email.add_error "not found"
     end
   end
 end

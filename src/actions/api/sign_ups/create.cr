@@ -4,6 +4,7 @@ class SignUpRequestUser
   property email : String
   property password : String
   property password_confirmation : String
+  property customer : String?
 end
 
 class SignUpRequest
@@ -20,17 +21,17 @@ class Api::SignUps::Create < ApiAction
       user = SignUpUser.create!(params)
     rescue JSON::SerializableError
       json({
-        message: "The request data is unexpected",
+        message: "Unexpected request params",
       }, HTTP::Status::BAD_REQUEST)
     rescue TypeCastError
       json({
-        message: "Unexpected request data",
+        message: "Unexpected request params",
       }, HTTP::Status::BAD_REQUEST)
     else
       # response with 200 OK with token
-      json({token: UserToken.generate(user)})
+      # json({token: UserToken.generate(user)})
       # or just response with 201 Created
-      # head HTTP::Status::Created
+      head HTTP::Status::CREATED
     end
   end
 end

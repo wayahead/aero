@@ -6,7 +6,7 @@ class UserToken
   def self.generate(user : User) : String
     payload = {
       "user_id" => user.id.to_s,
-      "exp" => Jwt.settings.secret_expire
+      "exp" => Time.utc.to_unix + Jwt.settings.secret_expire
     }
 
     settings.stubbed_token || create_token(payload)

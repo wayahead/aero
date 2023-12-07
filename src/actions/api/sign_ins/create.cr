@@ -17,7 +17,7 @@ class Api::SignIns::Create < ApiAction
       req = SignInRequest.from_json(params.body)
     rescue JSON::SerializableError
       json({
-        message: "The request data is unexpected",
+        message: "Unexpected request params",
       }, HTTP::Status::BAD_REQUEST)
     else
       SignInUser.run(params) do |operation, user|

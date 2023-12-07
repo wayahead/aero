@@ -14,7 +14,7 @@ class CreateUsers::V00000000000002 < Avram::Migrator::Migration::V1
       add description : String?
       add preferences : JSON::Any?
 
-      add_belongs_to customer : Customer, on_delete: :cascade, foreign_key_type: UUID
+      add_belongs_to customer : Customer?, on_delete: :cascade, foreign_key_type: UUID
     end
   end
 

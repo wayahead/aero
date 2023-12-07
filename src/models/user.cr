@@ -41,7 +41,7 @@ class User < BaseModel
   end
 
   def admin?
-    "administrator".in? roles || "superuser".in? roles
+    ("administrator".in? roles) || ("superuser".in? roles)
   end
 
   def maintainer?

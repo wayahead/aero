@@ -4,6 +4,7 @@ abstract class ApiAction < Lucky::Action
   # Remove this line if you want to send cookies in the response header.
   disable_cookies
   accepted_formats [:json], default: :json
+  route_prefix "/api/v1"
 
   include Api::Auth::Helpers
 
@@ -15,5 +16,18 @@ abstract class ApiAction < Lucky::Action
   # Add 'include Lucky::SkipRouteStyleCheck' to your actions if you wish to ignore this check for specific routes.
   include Lucky::EnforceUnderscoredRoute
 
-  route_prefix "/api/v1"
+  # Enable pagination
+  include Lucky::Paginator::BackendHelpers
+
+  def paginator_per_page : Int32
+    # Return a static/default value
+    50
+
+    # Or allow using a param with a default
+    params.get?(:per_page).try(&.to_i) || 50
+  end
+
+  def paginator_page : Int32
+    request.headers["Page"]?.try(&.to_i) || 1
+  end
 end

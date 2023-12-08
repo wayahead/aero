@@ -25,7 +25,7 @@ error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "wayahead2009_w_customer@live.com",
+    "email": "admin@bewise.dev",
     "password": "WqA1yT2z",
   }
 })
@@ -107,7 +107,7 @@ error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "wayahead2009_wo_customer@live.com",
+    "email": "admin_wo@bewise.dev",
     "password": "WqA1yT2z",
   }
 })

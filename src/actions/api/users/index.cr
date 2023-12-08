@@ -6,10 +6,14 @@ class Api::Users::Index < ApiAction
       json UserSerializer.for_collection(users, pages)
     elsif current_user.admin?
       if current_user.customer_id.nil?
-        pages, users = paginate(UserQuery.new.customer_id.is_nil)
+        pages, users = paginate UserQuery.new
+          .customer_id.is_nil
+          .roles.not.includes("superuser")
         json UserSerializer.for_collection(users, pages)
       else
-        pages, users = paginate(UserQuery.new.customer_id(current_user.customer_id.not_nil!))
+        pages, users = paginate UserQuery.new
+          .customer_id(current_user.customer_id.not_nil!)
+          .roles.not.includes("superuser")
         json UserSerializer.for_collection(users, pages)
       end
     else

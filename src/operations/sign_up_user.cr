@@ -13,21 +13,20 @@ class SignUpUser < User::SaveOperation
   before_save validate_customer
 
   before_save do
-    validate_uniqueness_of name, message: "already existed"
-    validate_uniqueness_of email, message: "already existed"
-    Authentic.copy_and_encrypt(password, to: encrypted_password) if password.valid?
-
     # set required fields which are not from request params
     status.value = "created"
     roles.value = [] of String
+
+    validate_uniqueness_of name, message: "already existed"
+    validate_uniqueness_of email, message: "already existed"
+    Authentic.copy_and_encrypt(password, to: encrypted_password) if password.valid?
   end
 
   private def validate_customer
     unless customer.value.nil?
-      puts customer.value.not_nil!
-      org = CustomerQuery.new.name(customer.value.not_nil!).first?
-      if !org.nil?
-        customer_id.value = org.id
+      c = CustomerQuery.new.name(customer.value.not_nil!).first?
+      if !c.nil?
+        customer_id.value = c.id
       else
         customer.add_error "not found"
       end

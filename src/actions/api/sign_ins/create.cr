@@ -18,6 +18,7 @@ class Api::SignIns::Create < ApiAction
     rescue JSON::SerializableError
       json({
         message: "Unexpected request params",
+        details: "Failed to decode request params"
       }, HTTP::Status::BAD_REQUEST)
     else
       SignInUser.run(params) do |operation, user|

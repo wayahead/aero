@@ -17,7 +17,7 @@ class Api::Users::Index < ApiAction
         json UserSerializer.for_collection(users, pages)
       end
     else
-      json auth_denied_json, 403
+      json auth_denied_json, HTTP::Status::FORBIDDEN
     end
   end
 

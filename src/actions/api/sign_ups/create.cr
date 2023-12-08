@@ -22,10 +22,12 @@ class Api::SignUps::Create < ApiAction
     rescue JSON::SerializableError
       json({
         message: "Unexpected request params",
+        details: "Failed to decode request params"
       }, HTTP::Status::BAD_REQUEST)
     rescue TypeCastError
       json({
         message: "Unexpected request params",
+        details: "Failed to cast request params"
       }, HTTP::Status::BAD_REQUEST)
     else
       # response with 200 OK with token

@@ -51,7 +51,7 @@ except requests.exceptions.HTTPError as he:
 except ValueError as ve:
   error_flag = True
   print('JSON decoding error:', ve)
-else:
+finally:
   if error_flag:
     print('err: sign_in was failed')
     exit(1)
@@ -89,7 +89,7 @@ except requests.exceptions.HTTPError as he:
 except ValueError as ve:
   error_flag = True
   print('JSON decoding error:', ve)
-else:
+finally:
   if error_flag:
     print('err: get_self (me) was failed')
     exit(1)

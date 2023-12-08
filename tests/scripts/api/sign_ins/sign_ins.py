@@ -51,7 +51,7 @@ except requests.exceptions.HTTPError as he:
 except ValueError as ve:
   error_flag = True
   print('JSON decoding error:', ve)
-else:
+finally:
   if error_flag:
     print('err: sign_in with customer was failed')
     exit(1)
@@ -92,7 +92,7 @@ except requests.exceptions.HTTPError as he:
 except ValueError as ve:
   error_flag = True
   print('JSON decoding error:', ve)
-else:
+finally:
   if error_flag:
     print('err: sign_in without customer was failed')
     exit(1)

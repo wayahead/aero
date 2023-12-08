@@ -52,7 +52,7 @@ except requests.exceptions.HTTPError as he:
 except ValueError as ve:
   error_flag = True
   print('JSON decoding error:', ve)
-else:
+finally:
   if error_flag:
     print('err: sign_in admin was failed')
     exit(1)
@@ -91,7 +91,7 @@ except requests.exceptions.HTTPError as he:
 except ValueError as ve:
   error_flag = True
   print('JSON decoding error:', ve)
-else:
+finally:
   if error_flag:
     print('err: get_users via admin with customer was failed')
     exit(1)
@@ -134,7 +134,7 @@ except requests.exceptions.HTTPError as he:
 except ValueError as ve:
   error_flag = True
   print('JSON decoding error:', ve)
-else:
+finally:
   if error_flag:
     print('err: sign_in admin was failed')
     exit(1)
@@ -173,7 +173,7 @@ except requests.exceptions.HTTPError as he:
 except ValueError as ve:
   error_flag = True
   print('JSON decoding error:', ve)
-else:
+finally:
   if error_flag:
     print('err: get_users via admin without customer was failed')
     exit(1)

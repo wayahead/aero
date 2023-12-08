@@ -22,7 +22,13 @@ class Api::SignIns::Create < ApiAction
     else
       SignInUser.run(params) do |operation, user|
         if user
-          json({token: UserToken.generate(user)})
+          if user.active?
+            json({token: UserToken.generate(user)})
+          else
+            json({
+              message: "User not activated",
+            }, HTTP::Status::FORBIDDEN)
+          end
         else
           raise Avram::InvalidOperationError.new(operation)
         end

@@ -14,7 +14,6 @@ class UserSerializer < BaseSerializer
       status: @user.status,
       roles: @user.roles,
       description: @user.description,
-      customer: @user.customer_id,
       created_at: @user.created_at,
       updated_at: @user.updated_at
     }

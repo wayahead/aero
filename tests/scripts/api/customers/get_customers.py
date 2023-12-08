@@ -16,7 +16,7 @@ headers = {
   'Origin': 'windmill.com'
 }
 
-print("testcase: get_users via superadmin")
+print("testcase: get_customers via superadmin")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
@@ -64,7 +64,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users'
+url = 'http://127.0.0.1:3000/api/v1/customers'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)
@@ -91,10 +91,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('err: get_users via superadmin was failed')
+    print('err: get_customers via superadmin was failed')
     exit(1)
   else:
-    print('inf: get_users via superadmin was successful')
+    print('inf: get_customers via superadmin was successful')
     exit(0)
 
 # use $? in shell to check success or not

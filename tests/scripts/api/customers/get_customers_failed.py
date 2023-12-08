@@ -16,15 +16,15 @@ headers = {
   'Origin': 'windmill.com'
 }
 
-print("testcase: get_users via superadmin")
+print("testcase: get_customers via admin")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "wayahead@bewise.dev",
-    "password": "@NqGaKv*237+",
+    "email": "admin@bewise.dev",
+    "password": "WqA1yT2z",
   }
 })
 
@@ -52,10 +52,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('err: sign_in superadmin was failed')
+    print('err: sign_in admin was failed')
     exit(1)
   else:
-    print('inf: sign_in superadmin was successful')
+    print('inf: sign_in admin was successful')
 
 headers = {
   'User-Agent': random_user_agent,
@@ -64,14 +64,14 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users'
+url = 'http://127.0.0.1:3000/api/v1/customers'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)
   print("inf:", response.headers)
   json_data = response.json()
   print("inf:", response.status_code, json_data)
-  if response.status_code != requests.codes.ok:
+  if response.status_code != requests.codes.forbidden:
     error_flag = True
 # Handle ConnectionError
 except requests.exceptions.ConnectionError as ce:
@@ -91,10 +91,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('err: get_users via superadmin was failed')
+    print('err: get_customers via superadmin was failed')
     exit(1)
   else:
-    print('inf: get_users via superadmin was successful')
+    print('inf: get_customers via superadmin was successful')
     exit(0)
 
 # use $? in shell to check success or not

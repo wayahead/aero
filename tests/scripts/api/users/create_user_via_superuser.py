@@ -18,7 +18,7 @@ headers = {
 
 # Testcase 1
 
-print("testcase: create_admin via superuser")
+print("testcase: create_admin via superadmin")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
@@ -54,10 +54,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('err: sign_in superuser was failed')
+    print('err: sign_in superadmin was failed')
     exit(1)
   else:
-    print('inf: sign_in superuser was successful')
+    print('inf: sign_in superadmin was successful')
 
 headers = {
   'User-Agent': random_user_agent,
@@ -104,14 +104,14 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('err: create_admin via superuser was failed')
+    print('err: create_admin via superadmin was failed')
     exit(1)
   else:
-    print('inf: create_admin via superuser was successful')
+    print('inf: create_admin via superadmin was successful')
 
 # Testcase 2
 
-print("testcase: create_user with superuser without status, customer and roles")
+print("testcase: create_user with superadmin without status, customer and roles")
 
 url = 'http://127.0.0.1:3000/api/v1/users'
 error_flag = False
@@ -149,10 +149,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('err: create_admin via superuser without status, customer and roles was failed')
+    print('err: create_admin via superadmin without status, customer and roles was failed')
     exit(1)
   else:
-    print('inf: create_admin via superuser without status, customer and roles was successful')
+    print('inf: create_admin via superadmin without status, customer and roles was successful')
 
 # Testcase 3
 
@@ -168,7 +168,7 @@ data = json.dumps({
     "description": "super administrator",
     "password": "@NqGaKv*237+",
     "password_confirmation": "@NqGaKv*237+",
-    "roles": ["superuser"]
+    "roles": ["superadmin"]
   }
 })
 

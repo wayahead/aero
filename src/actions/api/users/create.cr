@@ -4,6 +4,7 @@ class CreateUserRequestUser
   property email : String
   property password : String
   property password_confirmation : String
+  property description : String?
   property status : String?
   property customer : String?
   property roles : Array(String)?
@@ -20,6 +21,16 @@ class Api::Users::Create < ApiAction
   post "/users" do
     begin
       req = CreateUserRequest.from_json(params.body)
+
+      description = req.user.description
+      unless description.nil?
+        if description.bytesize > 256
+          return json({
+            message: "Unexpected request params",
+            details: "The description is too long"
+          }, HTTP::Status::BAD_REQUEST)
+        end
+      end
 
       status = req.user.status
       unless status.nil?

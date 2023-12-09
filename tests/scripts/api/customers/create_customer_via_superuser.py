@@ -18,7 +18,7 @@ headers = {
 
 # Testcase 1
 
-print("[==]: create_admin via superadmin")
+print("[==]: create_customer via superadmin")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
@@ -66,19 +66,14 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users'
+url = 'http://127.0.0.1:3000/api/v1/customers'
 error_flag = False
 
 data = json.dumps({
-  "user": {
-    "name": "admin",
-    "email": "admin@bewise.dev",
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z",
-    "description": "administrator of bewise",
+  "customer": {
+    "name": "Topease",
     "status": "activated",
-    "customer": "bewise",
-    "roles": ["administrator"]
+    "description": "Topease Technology",
   }
 })
 
@@ -86,6 +81,8 @@ try:
   response = requests.post(url, data=data, headers=headers, timeout=5)
   # print("-inf:", response.headers)
   if response.status_code != requests.codes.created:
+    json_data = response.json()
+    print("-inf:", response.status_code, json_data)
     error_flag = True
 # Handle ConnectionError
 except requests.exceptions.ConnectionError as ce:
@@ -105,33 +102,30 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: create_admin via superadmin was failed')
+    print('*err: create_customer via superadmin was failed')
     exit(1)
   else:
-    print('-inf: create_admin via superadmin was successful')
+    print('-inf: create_customer via superadmin was successful')
 
 # Testcase 2
 
-print("[==]: create_user with superadmin without status, customer and roles")
+print("[==]: create_customer_failed via admin")
 
-url = 'http://127.0.0.1:3000/api/v1/users'
+url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
 
 data = json.dumps({
   "user": {
-    "name": "admin_wo",
-    "email": "admin_wo@bewise.dev",
+    "email": "admin@bewise.dev",
     "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z",
-    "description": "administrator of bewise",
-    "roles": ["administrator"]
   }
 })
 
 try:
   response = requests.post(url, data=data, headers=headers, timeout=5)
-  # print("-inf:", response.headers)
-  if response.status_code != requests.codes.created:
+  json_data = response.json()
+  # print("-inf:", response.status_code, json_data)
+  if response.status_code != requests.codes.ok:
     error_flag = True
 # Handle ConnectionError
 except requests.exceptions.ConnectionError as ce:
@@ -151,34 +145,35 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: create_admin via superadmin without status, customer and roles was failed')
+    print('*err: sign_in admin was failed')
     exit(1)
   else:
-    print('-inf: create_admin via superadmin without status, customer and roles was successful')
+    print('-inf: sign_in admin was successful')
 
-# Testcase 3
+headers = {
+  'User-Agent': random_user_agent,
+  'Content-type': 'application/json',
+  'Origin': 'windmill.com',
+  'Authorization': "Bearer "+json_data["token"]
+}
 
-print("[==]: create_superadmin")
-
-url = 'http://127.0.0.1:3000/api/v1/users'
+url = 'http://127.0.0.1:3000/api/v1/customers'
 error_flag = False
 
 data = json.dumps({
-  "user": {
-    "name": "superadmin",
-    "email": "superadmin@bewise.dev",
-    "description": "super administrator",
-    "password": "@NqGaKv*237+",
-    "password_confirmation": "@NqGaKv*237+",
-    "description": "super administrator of bewise",
-    "roles": ["superadmin"]
+  "customer": {
+    "name": "potential",
+    "status": "created",
+    "description": "Potential Technology",
   }
 })
 
 try:
   response = requests.post(url, data=data, headers=headers, timeout=5)
   # print("-inf:", response.headers)
-  if response.status_code != requests.codes.created:
+  json_data = response.json()
+  print("-inf:", response.status_code, json_data)
+  if response.status_code != requests.codes.forbidden:
     error_flag = True
 # Handle ConnectionError
 except requests.exceptions.ConnectionError as ce:
@@ -198,10 +193,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: create_superadmin was failed')
+    print('*err: create_customer_failed via admin was failed')
     exit(1)
   else:
-    print('-inf: create_superadmin was successful')
+    print('-inf: create_customer_failed via admin was successful')
     exit(0)
 
 # use $? in shell to check success or not

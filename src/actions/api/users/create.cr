@@ -15,14 +15,9 @@ class CreateUserRequest
 end
 
 class Api::Users::Create < ApiAction
-  post "/users" do
-    unless current_user.admin?
-      return json({
-        message: "Permission denied",
-        details: "The administrator is required"
-      }, HTTP::Status::FORBIDDEN)
-    end
+  include Api::Auth::RequireAdmin
 
+  post "/users" do
     begin
       req = CreateUserRequest.from_json(params.body)
 

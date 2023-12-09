@@ -16,16 +16,15 @@ headers = {
   'Origin': 'windmill.com'
 }
 
-print("[==]: get_self (me)")
+print("[==]: get_user_by_id_failed (not found) via superadmin")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
-json_data = {}
 
 data = json.dumps({
   "user": {
-    "email": "wayahead2009_w_customer@live.com",
-    "password": "WqA1yT2z",
+    "email": "wayahead@bewise.dev",
+    "password": "@NqGaKv*237+",
   }
 })
 
@@ -53,10 +52,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: sign_in was failed')
+    print('*err: sign_in superadmin was failed')
     exit(1)
   else:
-    print('-inf: sign_in was successful')
+    print('-inf: sign_in superadmin was successful')
 
 headers = {
   'User-Agent': random_user_agent,
@@ -65,13 +64,14 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/me'
+url = 'http://127.0.0.1:3000/api/v1/users?user_id=a2465159bd064a4c9d66f43f7c489053'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)
+  # print("-inf:", response.headers)
   json_data = response.json()
   print("-inf:", response.status_code, json_data)
-  if response.status_code != requests.codes.ok:
+  if response.status_code != requests.codes.not_found:
     error_flag = True
 # Handle ConnectionError
 except requests.exceptions.ConnectionError as ce:
@@ -91,8 +91,44 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: get_self (me) was failed')
+    print('*err: get_user_by_id (not found) via superadmin was failed')
     exit(1)
   else:
-    print('-inf: get_self (me) was successful')
+    print('-inf: get_user_by_id (not found) via superadmin was successful')
+
+print("[==]: get_user_by_id_failed (invalid id) via superadmin")
+
+url = 'http://127.0.0.1:3000/api/v1/users?user_id=invalid_user_id'
+error_flag = False
+try:
+  response = requests.get(url, headers=headers, timeout=5)
+  # print("-inf:", response.headers)
+  json_data = response.json()
+  print("-inf:", response.status_code, json_data)
+  if response.status_code != requests.codes.bad_request:
+    error_flag = True
+# Handle ConnectionError
+except requests.exceptions.ConnectionError as ce:
+  error_flag = True
+  print('Connection error:', ce)
+# Handle Timeout
+except requests.exceptions.Timeout as te:
+  error_flag = True
+  print('Request timed out:', te)
+# Handle HTTPError
+except requests.exceptions.HTTPError as he:
+  error_flag = True
+  print('HTTP error occurred:', he)
+# Handle ValueError
+except ValueError as ve:
+  error_flag = True
+  print('JSON decoding error:', ve)
+finally:
+  if error_flag:
+    print('*err: get_user_by_id (invalid id) via superadmin was failed')
+    exit(1)
+  else:
+    print('-inf: get_user_by_id (invalid id) via superadmin was successful')
     exit(0)
+
+# use $? in shell to check success or not

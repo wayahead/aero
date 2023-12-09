@@ -16,9 +16,7 @@ headers = {
   'Origin': 'windmill.com'
 }
 
-# Testcase 1
-
-print("[==]: create_user_failed (with customer) via admin_wo")
+print("[==]: get_user_by_name (user with customer) via admin_wo")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
@@ -66,27 +64,14 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users'
+url = 'http://127.0.0.1:3000/api/v1/users?user_id=10c2e3f906f947a1a1c05520636fecb3'
 error_flag = False
-
-data = json.dumps({
-  "user": {
-    "name": "john",
-    "email": "john.doe@tests.dev",
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z",
-    "status": "created",
-    "customer": "bewise",
-    "roles": ["maintainer", "operator"]
-  }
-})
-
 try:
-  response = requests.post(url, data=data, headers=headers, timeout=5)
+  response = requests.get(url, headers=headers, timeout=5)
   # print("-inf:", response.headers)
   json_data = response.json()
   print("-inf:", response.status_code, json_data)
-  if response.status_code != requests.codes.forbidden:
+  if response.status_code != requests.codes.not_found:
     error_flag = True
 # Handle ConnectionError
 except requests.exceptions.ConnectionError as ce:
@@ -106,61 +91,12 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: create_user_failed (with customer) via admin_wo was failed')
+    print('*err: get_user_by_id (user with customer) via admin_wo was failed')
     exit(1)
   else:
-    print('-inf: create_users_failed (with customer) via admin_wo was successful')
+    print('-inf: get_user_by_id (user with customer) via admin_wo was successful')
 
-# Testcase 2
-
-print("[==]: create_user (without customer) via admin_wo")
-
-url = 'http://127.0.0.1:3000/api/v1/users'
-error_flag = False
-
-data = json.dumps({
-  "user": {
-    "name": "john_wo.doe",
-    "email": "john_wo.doe@tests.dev",
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z"
-  }
-})
-
-try:
-  response = requests.post(url, data=data, headers=headers, timeout=5)
-  # print("-inf:", response.headers)
-  if response.status_code != requests.codes.created:
-    # print("-inf:", response.headers)
-    json_data = response.json()
-    print("-inf:", response.status_code, json_data)
-    error_flag = True
-# Handle ConnectionError
-except requests.exceptions.ConnectionError as ce:
-  error_flag = True
-  print('Connection error:', ce)
-# Handle Timeout
-except requests.exceptions.Timeout as te:
-  error_flag = True
-  print('Request timed out:', te)
-# Handle HTTPError
-except requests.exceptions.HTTPError as he:
-  error_flag = True
-  print('HTTP error occurred:', he)
-# Handle ValueError
-except ValueError as ve:
-  error_flag = True
-  print('JSON decoding error:', ve)
-finally:
-  if error_flag:
-    print('*err: create_user (without customer) with admin_wo was failed')
-    exit(1)
-  else:
-    print('-inf: create_user (without customer) with admin_wo was successful')
-
-# Testcase 3
-
-print("[==]: create_user (with customer) via admin")
+print("[==]: get_user_by_name (user without customer) via admin")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
@@ -208,27 +144,14 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users'
+url = 'http://127.0.0.1:3000/api/v1/users?user_id=a0955001bcec4728a7f8d8318a66f5a4'
 error_flag = False
-
-data = json.dumps({
-  "user": {
-    "name": "john",
-    "email": "john.doe@tests.dev",
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z",
-    "status": "created",
-    "customer": "bewise",
-    "roles": ["maintainer", "operator"]
-  }
-})
-
 try:
-  response = requests.post(url, data=data, headers=headers, timeout=5)
+  response = requests.get(url, headers=headers, timeout=5)
   # print("-inf:", response.headers)
-  if response.status_code != requests.codes.created:
-    json_data = response.json()
-    print("-inf:", response.status_code, json_data)
+  json_data = response.json()
+  print("-inf:", response.status_code, json_data)
+  if response.status_code != requests.codes.not_found:
     error_flag = True
 # Handle ConnectionError
 except requests.exceptions.ConnectionError as ce:
@@ -248,58 +171,9 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: create_user (with customer) with admin was failed')
+    print('*err: get_user_by_id (user without customer) via admin was failed')
     exit(1)
   else:
-    print('-inf: create_user (with customer) with admin was successful')
-
-# Testcase 4
-
-print("[==]: create_user_failed (without customer) via admin")
-
-url = 'http://127.0.0.1:3000/api/v1/users'
-error_flag = False
-
-data = json.dumps({
-  "user": {
-    "name": "james_wo",
-    "email": "john.doe@tests.dev",
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z",
-    "status": "created",
-    "roles": ["maintainer", "operator"]
-  }
-})
-
-try:
-  response = requests.post(url, data=data, headers=headers, timeout=5)
-  # print("-inf:", response.headers)
-  if response.status_code != requests.codes.forbidden:
-    json_data = response.json()
-    print("-inf:", response.status_code, json_data)
-    error_flag = True
-# Handle ConnectionError
-except requests.exceptions.ConnectionError as ce:
-  error_flag = True
-  print('Connection error:', ce)
-# Handle Timeout
-except requests.exceptions.Timeout as te:
-  error_flag = True
-  print('Request timed out:', te)
-# Handle HTTPError
-except requests.exceptions.HTTPError as he:
-  error_flag = True
-  print('HTTP error occurred:', he)
-# Handle ValueError
-except ValueError as ve:
-  error_flag = True
-  print('JSON decoding error:', ve)
-finally:
-  if error_flag:
-    print('*err: create_user_failed (without customer) with admin was failed')
-    exit(1)
-  else:
-    print('-inf: create_user_failed (without customer) with admin was successful')
-    exit(0)
+    print('-inf: get_user_by_id (user without customer) via admin was successful')
 
 # use $? in shell to check success or not

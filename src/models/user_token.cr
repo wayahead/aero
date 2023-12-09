@@ -5,7 +5,8 @@ class UserToken
 
   def self.generate(user : User) : String
     payload = {
-      "user_id" => user.id.to_s,
+      # "user_id" => user.id.to_s,
+      "user_id" => user.id.hexstring,
       "exp" => Time.utc.to_unix + Jwt.settings.secret_expire
     }
 

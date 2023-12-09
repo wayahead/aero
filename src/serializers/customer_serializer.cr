@@ -8,7 +8,7 @@ class CustomerSerializer < BaseSerializer
 
   def render
     {
-      id: @customer.id,
+      id: @customer.id.hexstring,
       name: @customer.name,
       status: @customer.status,
       description: @customer.description,

@@ -8,7 +8,7 @@ class UserSerializer < BaseSerializer
 
   def render
     {
-      id: @user.id,
+      id: @user.id.hexstring,
       name: @user.name,
       email: @user.email,
       status: @user.status,

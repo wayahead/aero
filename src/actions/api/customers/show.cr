@@ -1,7 +1,7 @@
 class Api::Customers::Show < ApiAction
   include Api::Auth::RequireSuperAdmin
 
-  get "/customer/:customer_id" do
+  get "/customers/:customer_id" do
     cid = UUID.parse?(customer_id)
     if cid.nil?
       return json({

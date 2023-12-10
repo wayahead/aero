@@ -1,7 +1,7 @@
 class Api::Users::ShowByName < ApiAction
   include Api::Auth::RequireAdmin
 
-  get "/user/name/:user_name" do
+  get "/users/name/:user_name" do
     if current_user.superadmin?
       user = UserQuery.new.name(user_name).first?
       if user.nil?

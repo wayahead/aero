@@ -1,7 +1,7 @@
 class Api::Customers::ShowByName < ApiAction
   include Api::Auth::RequireSuperAdmin
 
-  get "/customer/name/:customer_name" do
+  get "/customers/name/:customer_name" do
     customer = CustomerQuery.new.name(customer_name).first?
     if customer.nil?
       json({

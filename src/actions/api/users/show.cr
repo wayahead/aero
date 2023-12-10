@@ -1,7 +1,7 @@
 class Api::Users::Show < ApiAction
   include Api::Auth::RequireAdmin
 
-  get "/user/:user_id" do
+  get "/users/:user_id" do
     uid = UUID.parse?(user_id)
     if uid.nil?
       return json({

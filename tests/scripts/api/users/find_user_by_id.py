@@ -64,7 +64,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users/ea3aa787e4ae425681b59910efcb4d01'
+url = 'http://127.0.0.1:3000/api/v1/user/ea3aa787e4ae425681b59910efcb4d01'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)
@@ -144,7 +144,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users/10c2e3f906f947a1a1c05520636fecb3'
+url = 'http://127.0.0.1:3000/api/v1/user/10c2e3f906f947a1a1c05520636fecb3'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)
@@ -224,7 +224,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users/a0955001bcec4728a7f8d8318a66f5a4'
+url = 'http://127.0.0.1:3000/api/v1/user/a0955001bcec4728a7f8d8318a66f5a4'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)

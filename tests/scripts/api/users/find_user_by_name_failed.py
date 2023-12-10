@@ -64,7 +64,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users/name/johni_wo.doe'
+url = 'http://127.0.0.1:3000/api/v1/user/name/johni_wo.doe'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)
@@ -144,7 +144,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users/name/john'
+url = 'http://127.0.0.1:3000/api/v1/user/name/john'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)

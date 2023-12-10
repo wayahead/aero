@@ -1,17 +1,9 @@
-class Api::Users::Show < ApiAction
+class Api::Users::ShowByName < ApiAction
   include Api::Auth::RequireAdmin
 
-  get "/user/:user_id" do
-    uid = UUID.parse?(user_id)
-    if uid.nil?
-      return json({
-        message: "Invalid user id",
-        details: "The user id is not valid"
-      }, HTTP::Status::BAD_REQUEST)
-    end
-
+  get "/user/name/:user_name" do
     if current_user.superadmin?
-      user = UserQuery.new.id(uid).first?
+      user = UserQuery.new.name(user_name).first?
       if user.nil?
         json({
           message: "Not found",
@@ -23,7 +15,7 @@ class Api::Users::Show < ApiAction
     else
       if current_user.customer_id.nil?
         user = UserQuery.new
-          .id(uid)
+          .name(user_name)
           .customer_id.is_nil
           .roles.not.includes("superuser")
           .first?
@@ -37,7 +29,7 @@ class Api::Users::Show < ApiAction
         end
       else
         user = UserQuery.new
-          .id(uid)
+          .name(user_name)
           .customer_id(current_user.customer_id.not_nil!)
           .roles.not.includes("superuser")
           .first?

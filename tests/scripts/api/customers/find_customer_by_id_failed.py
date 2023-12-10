@@ -64,7 +64,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/customers/invalid-customer-id'
+url = 'http://127.0.0.1:3000/api/v1/customer/invalid-customer-id'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)
@@ -96,7 +96,7 @@ finally:
   else:
     print('-inf: find_customer_by_id_failed (invalid uuid) was successful')
 
-url = 'http://127.0.0.1:3000/api/v1/customers/53066ee9cc2d49ee814a85262c38ccfa'
+url = 'http://127.0.0.1:3000/api/v1/customer/53066ee9cc2d49ee814a85262c38ccfa'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)

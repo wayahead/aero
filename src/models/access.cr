@@ -23,14 +23,14 @@ class Access < BaseModel
   end
 
   def active?
-    status.downcase == "activated"
-  end
-
-  def deleted?
-    status.downcase == "deleted"
+    (status.downcase == "activated") && (!soft_deleted_at.nil?)
   end
 
   def suspended?
-    status.downcase == "suspended"
+    (status.downcase == "suspended") && (!soft_deleted_at.nil?)
+  end
+
+  def deleted?
+    !soft_deleted_at.nil?
   end
 end

@@ -30,15 +30,19 @@ class User < BaseModel
   end
 
   def active?
-    status.downcase == "activated"
+    (status.downcase == "activated") && (soft_deleted_at.nil?)
   end
 
-  def deleted?
-    status.downcase == "deleted"
+  def created?
+    (status.downcase == "created") && (soft_deleted_at.nil?)
   end
 
   def suspended?
-    status.downcase == "suspended"
+    (status.downcase == "suspended") && (soft_deleted_at.nil?)
+  end
+
+  def deleted?
+    !soft_deleted_at.nil?
   end
 
   def superadmin?

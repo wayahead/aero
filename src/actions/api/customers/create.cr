@@ -3,6 +3,7 @@ class CreateCustomerRequestCustomer
   property name : String
   property status : String?
   property description : String?
+  property preferences : Customer::Preferences?
 end
 
 class CreateCustomerRequest
@@ -29,7 +30,7 @@ class Api::Customers::Create < ApiAction
 
       status = req.customer.status
       unless status.nil?
-        status = status.as(String).downcase
+        status = status.downcase
         unless status.in? ["created", "activated", "suspended"]
           return json({
             message: "Unexpected request params",

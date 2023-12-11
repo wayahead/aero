@@ -23,7 +23,7 @@ error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "wayahead@bewise.dev",
+    "email": "topease@topease.com",
     "password": "@NqGaKv*237+",
   }
 })
@@ -64,7 +64,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/customers/aa27ad23ba694480a6b7f0f5d8907e75'
+url = 'http://127.0.0.1:3000/api/v1/customers/6924c4b5c0704ca9808461dab1c99c8d'
 error_flag = False
 try:
   response = requests.delete(url, headers=headers, timeout=5)

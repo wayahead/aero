@@ -23,7 +23,7 @@ error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "wayahead@bewise.dev",
+    "email": "wayahead@outlook.com",
     "password": "@NqGaKv*237+",
   }
 })
@@ -64,7 +64,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/customers_with_deleted/name/Topease'
+url = 'http://127.0.0.1:3000/api/v1/customers_with_deleted/name/TestCompany'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)

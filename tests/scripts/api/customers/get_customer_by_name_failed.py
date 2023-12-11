@@ -23,7 +23,7 @@ error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "wayahead@bewise.dev",
+    "email": "topease@topease.com",
     "password": "@NqGaKv*237+",
   }
 })

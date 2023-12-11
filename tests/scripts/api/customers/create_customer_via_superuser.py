@@ -25,7 +25,7 @@ error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "wayahead@bewise.dev",
+    "email": "wayahead@outlook.com",
     "password": "@NqGaKv*237+",
   }
 })
@@ -71,9 +71,9 @@ error_flag = False
 
 data = json.dumps({
   "customer": {
-    "name": "Topease",
+    "name": "TestCompany",
     "status": "activated",
-    "description": "Topease Technology",
+    "description": "Test Company",
   }
 })
 
@@ -116,7 +116,7 @@ error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "admin@bewise.dev",
+    "email": "admin_bewise@bewise.dev",
     "password": "WqA1yT2z",
   }
 })

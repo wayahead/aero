@@ -25,6 +25,51 @@ class Db::Seed::SampleData < LuckyTask::Task
     #   SignUpUser.create!(email: "me@example.com", password: "test123", password_confirmation: "test123")
     # end
     # ```
+
+    unless CustomerQuery.new.name("Bewise").first?
+      SaveCustomer.create!(
+        name: "Bewise",
+        status: "activated",
+        description:"Bewise Technology"
+      )
+    end
+
+    unless CustomerQuery.new.name("TopEase").first?
+      SaveCustomer.create!(
+        name: "TopEase",
+        status: "activated",
+        description:"TopEase Technology"
+      )
+    end
+
+    unless UserQuery.new.email("wayahead@bewise.dev").first?
+      customer = CustomerQuery.new.name("Bewise").first?
+      if customer
+        SaveUser.create!(
+          email: "bewise@bewise.dev",
+          encrypted_password: Authentic.generate_encrypted_password(%q<@NqGaKv*237+>),
+          name: "bewise",
+          status: "activated",
+          roles: ["superuser"],
+          description: "super administrator of Bewise",
+          customer_id: customer.id
+        )
+      end
+
+      customer = CustomerQuery.new.name("TopEase").first?
+      if customer
+        SaveUser.create!(
+          email: "topease@topease.com",
+          encrypted_password: Authentic.generate_encrypted_password(%q<@NqGaKv*237+>),
+          name: "topease",
+          status: "activated",
+          roles: ["superuser"],
+          description: "super administrator of TopEase",
+          customer_id: customer.id
+        )
+      end
+    end
+
     puts "Done adding sample data"
   end
 end

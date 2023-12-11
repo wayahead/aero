@@ -23,7 +23,7 @@ error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "wayahead@bewise.dev",
+    "email": "topease@topease.com",
     "password": "@NqGaKv*237+",
   }
 })
@@ -98,7 +98,7 @@ finally:
 
 print("[==]: delete_customer_by_id_failed (not found)")
 
-url = 'http://127.0.0.1:3000/api/v1/customers/53066ee9cc2d49ee814a85262c38ccfa'
+url = 'http://127.0.0.1:3000/api/v1/customers/6924c4b5c0704ca9808461dab1c99c8e'
 error_flag = False
 try:
   response = requests.delete(url, headers=headers, timeout=5)

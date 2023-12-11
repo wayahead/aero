@@ -23,7 +23,7 @@ error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "wayahead@bewise.dev",
+    "email": "wayahead@outlook.com",
     "password": "@NqGaKv*237+",
   }
 })
@@ -64,14 +64,14 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/customers/aa27ad23ba694480a6b7f0f5d8907e75'
+url = 'http://127.0.0.1:3000/api/v1/customers/041648b00708485c959bf982e1e46bec'
 error_flag = False
 
 data = json.dumps({
   "customer": {
-    "name": "topease",
+    "name": "TestCompany",
     "status": "ACTIVATED",
-    "description": "Topease Technology Ltd.",
+    "description": "TestCompany Technology Ltd.",
     "preferences": {"auto_renewal": False}
   }
 })

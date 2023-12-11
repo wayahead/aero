@@ -19,13 +19,14 @@ headers = {
 
 # Testcase 1
 
-print("testcase: sign_in with customer")
+print("[==]: sign_in superadmin")
+
 error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "wayahead2009_w_customer@live.com",
-    "password": "WqA1yT2z",
+    "email": "wayahead@outlook.com",
+    "password": "@NqGaKv*237+",
   }
 })
 
@@ -53,20 +54,21 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('err: sign_in with customer was failed')
+    print('err: sign_in superadmin was failed')
     exit(1)
   else:
-    print('inf: sign_in with customer was successful')
+    print('inf: sign_in superadmin was successful')
 
 # Testcase 2
 
-print("testcase: sign_in without customer")
+print("[==]: sign_in bewise")
+
 error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "wayahead2009_wo_customer@live.com",
-    "password": "WqA1yT2z",
+    "email": "bewise@bewise.dev",
+    "password": "@NqGaKv*237+",
   }
 })
 
@@ -94,10 +96,52 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('err: sign_in without customer was failed')
+    print('err: sign_in bewise was failed')
     exit(1)
   else:
-    print('inf: sign_in without customer was successful')
+    print('inf: sign_in bewise was successful')
+
+# Testcase 3
+
+print("[==]: sign_in bewise")
+
+error_flag = False
+
+data = json.dumps({
+  "user": {
+    "email": "topease@topease.com",
+    "password": "@NqGaKv*237+",
+  }
+})
+
+try:
+  response = requests.post(url, data=data, headers=headers, timeout=5)
+  json_data = response.json()
+  print("inf:", response.status_code, json_data)
+  if response.status_code != requests.codes.ok:
+    error_flag = True
+# Handle ConnectionError
+except requests.exceptions.ConnectionError as ce:
+  error_flag = True
+  print('Connection error:', ce)
+# Handle Timeout
+except requests.exceptions.Timeout as te:
+  error_flag = True
+  print('Request timed out:', te)
+# Handle HTTPError
+except requests.exceptions.HTTPError as he:
+  error_flag = True
+  print('HTTP error occurred:', he)
+# Handle ValueError
+except ValueError as ve:
+  error_flag = True
+  print('JSON decoding error:', ve)
+finally:
+  if error_flag:
+    print('err: sign_in topease was failed')
+    exit(1)
+  else:
+    print('inf: sign_in topease was successful')
     exit(0)
 
 # use $? in shell to check success or not

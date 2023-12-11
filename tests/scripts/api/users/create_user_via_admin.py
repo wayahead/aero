@@ -18,14 +18,14 @@ headers = {
 
 # Testcase 1
 
-print("[==]: create_user_failed (with customer) via admin_wo")
+print("[==]: create_user_failed (different customer)")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "admin_wo@bewise.dev",
+    "email": "admin_bewise@bewise.dev",
     "password": "WqA1yT2z",
   }
 })
@@ -54,10 +54,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: sign_in admin_wo was failed')
+    print('*err: sign_in admin_bewise was failed')
     exit(1)
   else:
-    print('-inf: sign_in admin_wo was successful')
+    print('-inf: sign_in admin_bewise was successful')
 
 headers = {
   'User-Agent': random_user_agent,
@@ -71,12 +71,12 @@ error_flag = False
 
 data = json.dumps({
   "user": {
-    "name": "john",
-    "email": "john.doe@tests.dev",
+    "name": "test1_topease",
+    "email": "test1_topease@tests.dev",
     "password": "WqA1yT2z",
     "password_confirmation": "WqA1yT2z",
     "status": "created",
-    "customer": "bewise",
+    "customer": "topease",
     "roles": ["maintainer", "operator"]
   }
 })
@@ -106,22 +106,22 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: create_user_failed (with customer) via admin_wo was failed')
+    print('*err: create_user_failed (different customer) via admin_bewise was failed')
     exit(1)
   else:
-    print('-inf: create_users_failed (with customer) via admin_wo was successful')
+    print('-inf: create_users_failed (different customer) via admin_bewise was successful')
 
 # Testcase 2
 
-print("[==]: create_user (without customer) via admin_wo")
+print("[==]: create_user via admin_bewise")
 
 url = 'http://127.0.0.1:3000/api/v1/users'
 error_flag = False
 
 data = json.dumps({
   "user": {
-    "name": "john_wo.doe",
-    "email": "john_wo.doe@tests.dev",
+    "name": "test1_bewise",
+    "email": "test1_bewise@tests.dev",
     "password": "WqA1yT2z",
     "password_confirmation": "WqA1yT2z"
   }
@@ -130,10 +130,9 @@ data = json.dumps({
 try:
   response = requests.post(url, data=data, headers=headers, timeout=5)
   # print("-inf:", response.headers)
-  if response.status_code != requests.codes.created:
-    # print("-inf:", response.headers)
-    json_data = response.json()
-    print("-inf:", response.status_code, json_data)
+  json_data = response.json()
+  print("-inf:", response.status_code, json_data)
+  if response.status_code != requests.codes.ok:
     error_flag = True
 # Handle ConnectionError
 except requests.exceptions.ConnectionError as ce:
@@ -153,21 +152,21 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: create_user (without customer) with admin_wo was failed')
+    print('*err: create_user with admin_bewise was failed')
     exit(1)
   else:
-    print('-inf: create_user (without customer) with admin_wo was successful')
+    print('-inf: create_user with admin_bewise was successful')
 
 # Testcase 3
 
-print("[==]: create_user (with customer) via admin")
+print("[==]: create_user via admin_topease")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "admin@bewise.dev",
+    "email": "admin_topease@topease.com",
     "password": "WqA1yT2z",
   }
 })
@@ -196,10 +195,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: sign_in admin was failed')
+    print('*err: sign_in admin_topease was failed')
     exit(1)
   else:
-    print('-inf: sign_in admin was successful')
+    print('-inf: sign_in admin_topease was successful')
 
 headers = {
   'User-Agent': random_user_agent,
@@ -213,12 +212,11 @@ error_flag = False
 
 data = json.dumps({
   "user": {
-    "name": "john",
-    "email": "john.doe@tests.dev",
+    "name": "test1_topease",
+    "email": "test1_topease@tests.dev",
     "password": "WqA1yT2z",
     "password_confirmation": "WqA1yT2z",
     "status": "created",
-    "customer": "bewise",
     "roles": ["maintainer", "operator"]
   }
 })
@@ -226,9 +224,9 @@ data = json.dumps({
 try:
   response = requests.post(url, data=data, headers=headers, timeout=5)
   # print("-inf:", response.headers)
-  if response.status_code != requests.codes.created:
-    json_data = response.json()
-    print("-inf:", response.status_code, json_data)
+  json_data = response.json()
+  print("-inf:", response.status_code, json_data)
+  if response.status_code != requests.codes.ok:
     error_flag = True
 # Handle ConnectionError
 except requests.exceptions.ConnectionError as ce:
@@ -248,58 +246,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: create_user (with customer) with admin was failed')
+    print('*err: create_user with admin_topease was failed')
     exit(1)
   else:
-    print('-inf: create_user (with customer) with admin was successful')
-
-# Testcase 4
-
-print("[==]: create_user_failed (without customer) via admin")
-
-url = 'http://127.0.0.1:3000/api/v1/users'
-error_flag = False
-
-data = json.dumps({
-  "user": {
-    "name": "james_wo",
-    "email": "john.doe@tests.dev",
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z",
-    "status": "created",
-    "roles": ["maintainer", "operator"]
-  }
-})
-
-try:
-  response = requests.post(url, data=data, headers=headers, timeout=5)
-  # print("-inf:", response.headers)
-  if response.status_code != requests.codes.forbidden:
-    json_data = response.json()
-    print("-inf:", response.status_code, json_data)
-    error_flag = True
-# Handle ConnectionError
-except requests.exceptions.ConnectionError as ce:
-  error_flag = True
-  print('Connection error:', ce)
-# Handle Timeout
-except requests.exceptions.Timeout as te:
-  error_flag = True
-  print('Request timed out:', te)
-# Handle HTTPError
-except requests.exceptions.HTTPError as he:
-  error_flag = True
-  print('HTTP error occurred:', he)
-# Handle ValueError
-except ValueError as ve:
-  error_flag = True
-  print('JSON decoding error:', ve)
-finally:
-  if error_flag:
-    print('*err: create_user_failed (without customer) with admin was failed')
-    exit(1)
-  else:
-    print('-inf: create_user_failed (without customer) with admin was successful')
+    print('-inf: create_user with admin_topease was successful')
     exit(0)
 
 # use $? in shell to check success or not

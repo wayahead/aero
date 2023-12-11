@@ -16,7 +16,7 @@ headers = {
   'Origin': 'windmill.com'
 }
 
-print("[==]: find_customer_by_id_failed")
+print("[==]: find_customer_by_id_failed (invalid id)")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
@@ -91,10 +91,12 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: find_customer_by_id_failed (invalid uuid) was failed')
+    print('*err: find_customer_by_id_failed (invalid id) was failed')
     exit(1)
   else:
-    print('-inf: find_customer_by_id_failed (invalid uuid) was successful')
+    print('-inf: find_customer_by_id_failed (invalid id) was successful')
+
+print("[==]: find_customer_by_id_failed (not found)")
 
 url = 'http://127.0.0.1:3000/api/v1/customers/53066ee9cc2d49ee814a85262c38ccfa'
 error_flag = False

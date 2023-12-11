@@ -1,4 +1,8 @@
 class Customer < BaseModel
+  # Include this module to add methods for
+  # soft deleting and restoring
+  include Avram::SoftDelete::Model
+
   struct Preferences
     include JSON::Serializable
 
@@ -10,6 +14,7 @@ class Customer < BaseModel
     column status : String
     column description : String?
     column preferences : Customer::Preferences?, serialize: true
+    column soft_deleted_at : Time?
 
     has_many users : User
   end

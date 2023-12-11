@@ -1,21 +1,22 @@
-class CreateCustomerRequestCustomer
+class UpdateCustomerByNameRequestCustomer
   include JSON::Serializable
-  property name : String
+  property name : String?
   property status : String?
   property description : String?
+  property preferences : Customer::Preferences?
 end
 
-class CreateCustomerRequest
+class UpdateCustomerByNameRequest
   include JSON::Serializable
-  property customer : CreateCustomerRequestCustomer
+  property customer : UpdateCustomerByNameRequestCustomer
 end
 
-class Api::Customers::Create < ApiAction
+class Api::Customers::UpdateByName < ApiAction
   include Api::Auth::RequireSuperAdmin
 
-  post "/customers" do
+  put "/customers/name/:customer_name" do
     begin
-      req = CreateCustomerRequest.from_json(params.body)
+      req = UpdateCustomerByNameRequest.from_json(params.body)
 
       description = req.customer.description
       unless description.nil?
@@ -29,8 +30,7 @@ class Api::Customers::Create < ApiAction
 
       status = req.customer.status
       unless status.nil?
-        status = status.as(String).downcase
-        unless status.in? ["created", "activated", "suspended"]
+        unless status.downcase.in? ["created", "activated", "suspended"]
           return json({
             message: "Unexpected request params",
             details: "The status is wrong"
@@ -38,8 +38,19 @@ class Api::Customers::Create < ApiAction
         end
       end
 
-      customer = CreateCustomer.create!(params)
-      json CustomerSerializer.new(customer)
+      customer = CustomerQuery.new
+        .name(customer_name)
+        .with_soft_deleted
+        .first?
+      if customer.nil?
+        json({
+          message: "Not found",
+          details: "The customer was not found"
+        }, HTTP::Status::NOT_FOUND)
+      else
+        updated_customer = UpdateCustomer.update!(customer, params)
+        json CustomerSerializer.new(updated_customer)
+      end
     rescue JSON::SerializableError
       json({
         message: "Unexpected request params",

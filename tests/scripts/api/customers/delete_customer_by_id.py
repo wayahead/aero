@@ -16,7 +16,7 @@ headers = {
   'Origin': 'windmill.com'
 }
 
-print("[==]: get_customer_by_id_failed (not found)")
+print("[==]: delete_customer_by_id")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
@@ -64,14 +64,14 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/customers?customer_id=b538fc43-4acb-4d5d-9450-d0bde9005f1a'
+url = 'http://127.0.0.1:3000/api/v1/customers/aa27ad23ba694480a6b7f0f5d8907e75'
 error_flag = False
 try:
-  response = requests.get(url, headers=headers, timeout=5)
+  response = requests.delete(url, headers=headers, timeout=5)
   # print("-inf:", response.headers)
   json_data = response.json()
   print("-inf:", response.status_code, json_data)
-  if response.status_code != requests.codes.not_found:
+  if response.status_code != requests.codes.ok:
     error_flag = True
 # Handle ConnectionError
 except requests.exceptions.ConnectionError as ce:
@@ -91,44 +91,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: get_customer_by_id_failed (not found) was failed')
+    print('*err: delete_customer_by_id was failed')
     exit(1)
   else:
-    print('-inf: get_customer_by_id_failed (not found) was successful')
-
-print("[==]: get_customer_by_id_failed (invalid id)")
-
-url = 'http://127.0.0.1:3000/api/v1/customers?customer_id=invalid-customer-id'
-error_flag = False
-try:
-  response = requests.get(url, headers=headers, timeout=5)
-  # print("-inf:", response.headers)
-  json_data = response.json()
-  print("-inf:", response.status_code, json_data)
-  if response.status_code != requests.codes.bad_request:
-    error_flag = True
-# Handle ConnectionError
-except requests.exceptions.ConnectionError as ce:
-  error_flag = True
-  print('Connection error:', ce)
-# Handle Timeout
-except requests.exceptions.Timeout as te:
-  error_flag = True
-  print('Request timed out:', te)
-# Handle HTTPError
-except requests.exceptions.HTTPError as he:
-  error_flag = True
-  print('HTTP error occurred:', he)
-# Handle ValueError
-except ValueError as ve:
-  error_flag = True
-  print('JSON decoding error:', ve)
-finally:
-  if error_flag:
-    print('*err: get_customer_by_id_failed (invalid id) was failed')
-    exit(1)
-  else:
-    print('-inf: get_customer_by_id_failed (invalid id) was successful')
+    print('-inf: delete_customer_by_id was successful')
     exit(0)
 
 # use $? in shell to check success or not

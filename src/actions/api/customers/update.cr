@@ -1,21 +1,30 @@
-class CreateCustomerRequestCustomer
+class UpdateCustomerRequestCustomer
   include JSON::Serializable
-  property name : String
+  property name : String?
   property status : String?
   property description : String?
+  property preferences : Customer::Preferences?
 end
 
-class CreateCustomerRequest
+class UpdateCustomerRequest
   include JSON::Serializable
-  property customer : CreateCustomerRequestCustomer
+  property customer : UpdateCustomerRequestCustomer
 end
 
-class Api::Customers::Create < ApiAction
+class Api::Customers::Update < ApiAction
   include Api::Auth::RequireSuperAdmin
 
-  post "/customers" do
+  put "/customers/:customer_id" do
     begin
-      req = CreateCustomerRequest.from_json(params.body)
+      cid = UUID.parse?(customer_id)
+      if cid.nil?
+        return json({
+          message: "Invalid customer id",
+          details: "The customer id is not valid"
+        }, HTTP::Status::BAD_REQUEST)
+      end
+
+      req = UpdateCustomerRequest.from_json(params.body)
 
       description = req.customer.description
       unless description.nil?
@@ -29,8 +38,7 @@ class Api::Customers::Create < ApiAction
 
       status = req.customer.status
       unless status.nil?
-        status = status.as(String).downcase
-        unless status.in? ["created", "activated", "suspended"]
+        unless status.downcase.in? ["created", "activated", "suspended"]
           return json({
             message: "Unexpected request params",
             details: "The status is wrong"
@@ -38,8 +46,19 @@ class Api::Customers::Create < ApiAction
         end
       end
 
-      customer = CreateCustomer.create!(params)
-      json CustomerSerializer.new(customer)
+      customer = CustomerQuery.new
+        .id(cid)
+        .with_soft_deleted
+        .first?
+      if customer.nil?
+        json({
+          message: "Not found",
+          details: "The customer was not found"
+        }, HTTP::Status::NOT_FOUND)
+      else
+        updated_customer = UpdateCustomer.update!(customer, params)
+        json CustomerSerializer.new(updated_customer)
+      end
     rescue JSON::SerializableError
       json({
         message: "Unexpected request params",

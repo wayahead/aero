@@ -14,8 +14,10 @@ class UserSerializer < BaseSerializer
       status: @user.status,
       roles: @user.roles,
       description: @user.description,
+      preferences: @user.preferences,
       created_at: @user.created_at,
-      updated_at: @user.updated_at
+      updated_at: @user.updated_at,
+      deleted_at: @user.soft_deleted_at
     }
   end
 end

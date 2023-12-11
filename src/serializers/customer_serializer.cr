@@ -14,7 +14,8 @@ class CustomerSerializer < BaseSerializer
       description: @customer.description,
       preferences: @customer.preferences,
       created_at: @customer.created_at,
-      updated_at: @customer.updated_at
+      updated_at: @customer.updated_at,
+      deleted_at: @customer.soft_deleted_at
     }
   end
 end

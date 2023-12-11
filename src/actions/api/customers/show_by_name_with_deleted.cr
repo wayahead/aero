@@ -1,9 +1,10 @@
-class Api::Customers::ShowByName < ApiAction
+class Api::Customers::ShowByNameWithDeleted < ApiAction
   include Api::Auth::RequireSuperAdmin
 
-  get "/customers/name/:customer_name" do
+  get "/customers_with_deleted/name/:customer_name" do
     customer = CustomerQuery.new
       .name(customer_name)
+      .with_soft_deleted
       .first?
     if customer.nil?
       json({

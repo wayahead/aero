@@ -1,4 +1,8 @@
 class User < BaseModel
+  # Include this module to add methods for
+  # soft deleting and restoring
+  include Avram::SoftDelete::Model
+
   include Carbon::Emailable
   include Authentic::PasswordAuthenticatable
 
@@ -16,6 +20,7 @@ class User < BaseModel
     column roles : Array(String)
     column description : String?
     column preferences : User::Preferences?, serialize: true
+    column soft_deleted_at : Time?
 
     belongs_to customer : Customer?
   end

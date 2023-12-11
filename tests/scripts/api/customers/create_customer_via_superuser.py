@@ -80,9 +80,9 @@ data = json.dumps({
 try:
   response = requests.post(url, data=data, headers=headers, timeout=5)
   # print("-inf:", response.headers)
-  if response.status_code != requests.codes.created:
-    json_data = response.json()
-    print("-inf:", response.status_code, json_data)
+  json_data = response.json()
+  print("-inf:", response.status_code, json_data)
+  if response.status_code != requests.codes.ok:
     error_flag = True
 # Handle ConnectionError
 except requests.exceptions.ConnectionError as ce:

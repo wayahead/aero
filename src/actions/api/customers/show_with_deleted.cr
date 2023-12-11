@@ -1,7 +1,7 @@
-class Api::Customers::Show < ApiAction
+class Api::Customers::ShowWithDeleted < ApiAction
   include Api::Auth::RequireSuperAdmin
 
-  get "/customers/:customer_id" do
+  get "/customers_with_deleted/:customer_id" do
     cid = UUID.parse?(customer_id)
     if cid.nil?
       return json({
@@ -12,6 +12,7 @@ class Api::Customers::Show < ApiAction
 
     customer = CustomerQuery.new
       .id(cid)
+      .with_soft_deleted
       .first?
     if customer.nil?
       json({

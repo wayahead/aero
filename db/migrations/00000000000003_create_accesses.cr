@@ -10,6 +10,7 @@ class CreateAccesses::V00000000000003 < Avram::Migrator::Migration::V1
       add key : String, unique: true, case_sensitive: false
       add secret : String, unique: true, case_sensitive: false
       add status : String, default: "activated"
+      add description : String?
       add preferences : JSON::Any?
 
       add_belongs_to user : User, on_delete: :cascade, foreign_key_type: UUID

@@ -1,7 +1,7 @@
-class Api::Customers::Index < ApiAction
+class Api::Customers::IndexWithDeleted < ApiAction
   include Api::Auth::RequireSuperAdmin
 
-  get "/customers" do
+  get "/customers_with_deleted" do
     customer_id = params.get?(:customer_id)
     customer_name = params.get?(:customer_name)
     customer_pattern = params.get?(:customer_pattern)
@@ -16,6 +16,7 @@ class Api::Customers::Index < ApiAction
       else
         customer = CustomerQuery.new
           .id(cid)
+          .with_soft_deleted
           .first?
         if customer.nil?
           return json({
@@ -29,6 +30,7 @@ class Api::Customers::Index < ApiAction
     elsif !customer_name.nil?
       customer = CustomerQuery.new
         .name(customer_name)
+        .with_soft_deleted
         .first?
       if customer.nil?
         return json({
@@ -39,11 +41,13 @@ class Api::Customers::Index < ApiAction
         return json CustomerSerializer.new(customer.as(Customer))
       end
     elsif !customer_pattern.nil?
-      pages, customers = paginate(CustomerQuery.new.name.like(customer_pattern))
+      pages, customers = paginate(CustomerQuery.new
+        .name.like(customer_pattern)
+        .with_soft_deleted)
       return json CustomerSerializer.for_collection(customers, pages)
     else
       # pages, customers = paginate(CustomerQuery.new, per_page: 2)
-      pages, customers = paginate(CustomerQuery.new)
+      pages, customers = paginate(CustomerQuery.new.with_soft_deleted)
       return json CustomerSerializer.for_collection(customers, pages)
     end
   end

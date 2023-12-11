@@ -64,7 +64,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/customers?customer_id=28cb688ae74d4320949f32ae2810be50'
+url = 'http://127.0.0.1:3000/api/v1/customers?customer_id=aa27ad23ba694480a6b7f0f5d8907e75'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)

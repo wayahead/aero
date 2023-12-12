@@ -18,7 +18,7 @@ class Api::Users::Show < ApiAction
           details: "The user was not found"
         }, HTTP::Status::NOT_FOUND)
       else
-        json UserSerializer.new(user.as(User))
+        json UserSerializer.new(user)
       end
     else
       if current_user.customer_id.nil?
@@ -33,7 +33,7 @@ class Api::Users::Show < ApiAction
             details: "The user was not found"
           }, HTTP::Status::NOT_FOUND)
         else
-          json UserSerializer.new(user.as(User))
+          json UserSerializer.new(user)
         end
       else
         user = UserQuery.new
@@ -47,7 +47,7 @@ class Api::Users::Show < ApiAction
             details: "The user was not found"
           }, HTTP::Status::NOT_FOUND)
         else
-          json UserSerializer.new(user.as(User))
+          json UserSerializer.new(user)
         end
       end
     end

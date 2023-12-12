@@ -18,14 +18,14 @@ headers = {
 
 # Testcase 1
 
-print("[==]: get_users via admin with customer")
+print("[==]: get_users via admin_bewise")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "admin@bewise.dev",
+    "email": "admin_bewise@bewise.dev",
     "password": "WqA1yT2z",
   }
 })
@@ -93,21 +93,21 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: get_users via admin with customer was failed')
+    print('*err: get_users via admin_bewise was failed')
     exit(1)
   else:
-    print('-inf: get_users via admin with customer was successful')
+    print('-inf: get_users via admin_bewise was successful')
 
 # Testcase 2
 
-print("[==]: get_users via admin without customer")
+print("[==]: get_users via admin_topease")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "admin_wo@bewise.dev",
+    "email": "admin_topease@topease.com",
     "password": "WqA1yT2z",
   }
 })
@@ -175,10 +175,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: get_users via admin without customer was failed')
+    print('*err: get_users via admin_topease was failed')
     exit(1)
   else:
-    print('-inf: get_users via admin without customer was successful')
+    print('-inf: get_users via admin_topease was successful')
     exit(0)
 
 # use $? in shell to check success or not

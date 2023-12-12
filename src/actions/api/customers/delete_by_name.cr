@@ -22,7 +22,7 @@ class Api::Customers::DeleteByName < ApiAction
       #   end
       # end
       deleted_customer = DeleteCustomer.delete!(customer)
-      json CustomerSerializer.new(deleted_customer.as(Customer))
+      json CustomerSerializer.new(deleted_customer)
     end
   end
 end

@@ -64,7 +64,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/customers/6924c4b5c0704ca9808461dab1c99c8d'
+url = 'http://127.0.0.1:3000/api/v1/customers/ef787135-45f7-44b2-82e2-32767b49f81f'
 error_flag = False
 try:
   response = requests.delete(url, headers=headers, timeout=5)

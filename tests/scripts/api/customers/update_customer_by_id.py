@@ -64,7 +64,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/customers/041648b00708485c959bf982e1e46bec'
+url = 'http://127.0.0.1:3000/api/v1/customers/ef787135-45f7-44b2-82e2-32767b49f81f'
 error_flag = False
 
 data = json.dumps({

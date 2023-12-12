@@ -17,7 +17,6 @@ class Api::SignIns::Create < ApiAction
       req = SignInRequest.from_json(params.body)
 
       SignInUser.run(params) do |operation, user|
-        puts "signinuser inside"
         if user
           unless user.customer_id.nil?
             customer = CustomerQuery.new.id(user.customer_id.not_nil!).first?

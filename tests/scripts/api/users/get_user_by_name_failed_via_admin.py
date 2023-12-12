@@ -16,14 +16,14 @@ headers = {
   'Origin': 'windmill.com'
 }
 
-print("[==]: get_user_by_name (user with customer) via admin_wo")
+print("[==]: get_user_by_name_failed via admin_topease")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "admin_wo@bewise.dev",
+    "email": "admin_topease@topease.com",
     "password": "WqA1yT2z",
   }
 })
@@ -52,10 +52,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: sign_in admin_wo was failed')
+    print('*err: sign_in admin_topease was failed')
     exit(1)
   else:
-    print('-inf: sign_in admin_wo was successful')
+    print('-inf: sign_in admin_topease was successful')
 
 headers = {
   'User-Agent': random_user_agent,
@@ -64,7 +64,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users?user_name=wayahead2009_w_customer'
+url = 'http://127.0.0.1:3000/api/v1/users?user_name=test1_bewise'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)
@@ -91,19 +91,53 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: get_user_by_name (user with customer) via admin_wo was failed')
+    print('*err: get_user_by_name_failed via admin_topease was failed')
     exit(1)
   else:
-    print('-inf: get_user_by_name (user with customer) via admin_wo was successful')
+    print('-inf: get_user_by_name_failed via admin_topease was successful')
 
-print("[==]: get_user_by_name (user without customer) via admin")
+print("[==]: get_superadmin_by_name via admin_topease")
+
+url = 'http://127.0.0.1:3000/api/v1/users?user_name=test1_bewise'
+error_flag = False
+try:
+  response = requests.get(url, headers=headers, timeout=5)
+  # print("-inf:", response.headers)
+  json_data = response.json()
+  print("-inf:", response.status_code, json_data)
+  if response.status_code != requests.codes.not_found:
+    error_flag = True
+# Handle ConnectionError
+except requests.exceptions.ConnectionError as ce:
+  error_flag = True
+  print('Connection error:', ce)
+# Handle Timeout
+except requests.exceptions.Timeout as te:
+  error_flag = True
+  print('Request timed out:', te)
+# Handle HTTPError
+except requests.exceptions.HTTPError as he:
+  error_flag = True
+  print('HTTP error occurred:', he)
+# Handle ValueError
+except ValueError as ve:
+  error_flag = True
+  print('JSON decoding error:', ve)
+finally:
+  if error_flag:
+    print('*err: get_user_by_name_failed via admin_topease was failed')
+    exit(1)
+  else:
+    print('-inf: get_user_by_name_failed via admin_topease was successful')
+
+print("[==]: get_user_by_name via admin_bewise")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "admin@bewise.dev",
+    "email": "admin_bewise@bewise.dev",
     "password": "WqA1yT2z",
   }
 })
@@ -132,10 +166,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: sign_in admin was failed')
+    print('*err: sign_in admin_bewise was failed')
     exit(1)
   else:
-    print('-inf: sign_in admin was successful')
+    print('-inf: sign_in admin_bewise was successful')
 
 headers = {
   'User-Agent': random_user_agent,
@@ -144,7 +178,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users?user_name=wayahead2009_wo_customer'
+url = 'http://127.0.0.1:3000/api/v1/users?user_name=test1_topease'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)
@@ -171,9 +205,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: get_user_by_name (user without customer) via admin was failed')
+    print('*err: get_user_by_name_failed via admin_bewise was failed')
     exit(1)
   else:
-    print('-inf: get_user_by_name (user without customer) via admin was successful')
+    print('-inf: get_user_by_name_failed via admin_bewise was successful')
+    exit(0)
 
 # use $? in shell to check success or not

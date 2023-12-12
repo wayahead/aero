@@ -23,7 +23,7 @@ error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "wayahead@bewise.dev",
+    "email": "wayahead@outlook.com",
     "password": "@NqGaKv*237+",
   }
 })
@@ -91,10 +91,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: get_user_by_name (not found) via superadmin was failed')
+    print('*err: get_user_by_name_failed (not found) via superadmin was failed')
     exit(1)
   else:
-    print('-inf: get_user_by_name (not found) via superadmin was successful')
+    print('-inf: get_user_by_name_failed (not found) via superadmin was successful')
     exit(0)
 
 # use $? in shell to check success or not

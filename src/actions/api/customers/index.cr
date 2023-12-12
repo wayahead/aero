@@ -23,7 +23,7 @@ class Api::Customers::Index < ApiAction
             details: "The customer was not found"
           }, HTTP::Status::NOT_FOUND)
         else
-          return json CustomerSerializer.new(customer.as(Customer))
+          return json CustomerSerializer.new(customer)
         end
       end
     elsif !customer_name.nil?
@@ -36,7 +36,7 @@ class Api::Customers::Index < ApiAction
           details: "The customer name was not found"
           }, HTTP::Status::NOT_FOUND)
       else
-        return json CustomerSerializer.new(customer.as(Customer))
+        return json CustomerSerializer.new(customer)
       end
     elsif !customer_pattern.nil?
       pages, customers = paginate(CustomerQuery.new.name.like(customer_pattern))

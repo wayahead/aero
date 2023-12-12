@@ -11,7 +11,7 @@ class Api::Customers::ShowByName < ApiAction
         details: "The customer was not found"
       }, HTTP::Status::NOT_FOUND)
     else
-      json CustomerSerializer.new(customer.as(Customer))
+      json CustomerSerializer.new(customer)
     end
   end
 end

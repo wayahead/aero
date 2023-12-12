@@ -23,7 +23,7 @@ error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "wayahead@bewise.dev",
+    "email": "wayahead@outlook.com",
     "password": "@NqGaKv*237+",
   }
 })
@@ -64,7 +64,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users/ea3aa787e4ae425681b59910efcb4d01'
+url = 'http://127.0.0.1:3000/api/v1/users/39588444-d153-42fa-a3c4-5b3cad4471e5'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)
@@ -96,14 +96,14 @@ finally:
   else:
     print('-inf: find_user_by_id via superadmin was successful')
 
-print("[==]: find_user_by_id via admin")
+print("[==]: find_user_by_id via admin_bewise")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "admin@bewise.dev",
+    "email": "admin_bewise@bewise.dev",
     "password": "WqA1yT2z",
   }
 })
@@ -144,7 +144,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users/10c2e3f906f947a1a1c05520636fecb3'
+url = 'http://127.0.0.1:3000/api/v1/users/5fea1ab8-59fa-4b18-9a27-53d64dc1fa90'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)
@@ -171,19 +171,19 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: find_user_by_id via admin was failed')
+    print('*err: find_user_by_id via admin_bewise was failed')
     exit(1)
   else:
-    print('-inf: find_user_by_id via admin was successful')
+    print('-inf: find_user_by_id via admin_bewise was successful')
 
-print("[==]: find_user_by_id via admin_wo")
+print("[==]: find_user_by_id via admin_topease")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "admin_wo@bewise.dev",
+    "email": "admin_topease@topease.com",
     "password": "WqA1yT2z",
   }
 })
@@ -212,10 +212,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: sign_in admin_wo was failed')
+    print('*err: sign_in admin_topease was failed')
     exit(1)
   else:
-    print('-inf: sign_in admin_wo was successful')
+    print('-inf: sign_in admin_topease was successful')
 
 headers = {
   'User-Agent': random_user_agent,
@@ -224,7 +224,7 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users/a0955001bcec4728a7f8d8318a66f5a4'
+url = 'http://127.0.0.1:3000/api/v1/users/5978a878-0208-472a-95c5-0a962268e408'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)
@@ -251,10 +251,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: find_user_by_id via admin_wo was failed')
+    print('*err: find_user_by_id via admin_topease was failed')
     exit(1)
   else:
-    print('-inf: find_user_by_id via admin_wo was successful')
+    print('-inf: find_user_by_id via admin_topease was successful')
     exit(0)
 
 # use $? in shell to check success or not

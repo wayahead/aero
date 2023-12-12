@@ -64,7 +64,8 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/customers/activate/ef787135-45f7-44b2-82e2-32767b49f81f'
+#url = 'http://127.0.0.1:3000/api/v1/customers/name/activate/TestCompany'
+url = 'http://127.0.0.1:3000/api/v1/customers/activate/bbf5e39a-f351-4381-b1a4-0837991761d7'
 error_flag = False
 
 try:

@@ -16,6 +16,8 @@ headers = {
   'Origin': 'windmill.com'
 }
 
+# Testcase 1
+
 print("[==]: get_admin_by_name via superadmin")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
@@ -64,7 +66,8 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users?user_id=2b4fdbfb-2c1a-4338-881f-1ef196cb22e1'
+#url = 'http://127.0.0.1:3000/api/v1/users?user_name=admin_topease'
+url = 'http://127.0.0.1:3000/api/v1/users?user_id=a066902a-2b9b-4925-af8a-46a4322332e0'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)
@@ -96,9 +99,12 @@ finally:
   else:
     print('-inf: get_admin_by_name via superadmin was successful')
 
+# Testcase 2
+
 print("[==]: get_superadmin_by_name via superadmin")
 
-url = 'http://127.0.0.1:3000/api/v1/users?user_id=39588444-d153-42fa-a3c4-5b3cad4471e5'
+#url = 'http://127.0.0.1:3000/api/v1/users?user_name=topease'
+url = 'http://127.0.0.1:3000/api/v1/users?user_id=59acad3e-64cd-4e3d-9bea-0612703d5f8b'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)

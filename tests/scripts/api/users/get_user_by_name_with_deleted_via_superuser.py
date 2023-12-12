@@ -16,6 +16,8 @@ headers = {
   'Origin': 'windmill.com'
 }
 
+# Testcase 1
+
 print("[==]: get_admin_by_name via superadmin")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
@@ -95,6 +97,8 @@ finally:
     exit(1)
   else:
     print('-inf: get_admin_by_name via superadmin was successful')
+
+# Testcase 2
 
 print("[==]: get_superadmin_by_name via superadmin")
 

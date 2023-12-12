@@ -16,6 +16,8 @@ headers = {
   'Origin': 'windmill.com'
 }
 
+# Testcase 1
+
 print("[==]: find_user_by_id via superadmin")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
@@ -64,7 +66,8 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users/39588444-d153-42fa-a3c4-5b3cad4471e5'
+#url = 'http://127.0.0.1:3000/api/v1/users/name/topease'
+url = 'http://127.0.0.1:3000/api/v1/users/59acad3e-64cd-4e3d-9bea-0612703d5f8b'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)
@@ -95,6 +98,8 @@ finally:
     exit(1)
   else:
     print('-inf: find_user_by_id via superadmin was successful')
+
+# Testcase 2
 
 print("[==]: find_user_by_id via admin_bewise")
 
@@ -144,7 +149,8 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users/5fea1ab8-59fa-4b18-9a27-53d64dc1fa90'
+#url = 'http://127.0.0.1:3000/api/v1/users/name/test1_bewise'
+url = 'http://127.0.0.1:3000/api/v1/users/40899938-17c4-4d5f-83b8-1967c55db5d3'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)
@@ -175,6 +181,8 @@ finally:
     exit(1)
   else:
     print('-inf: find_user_by_id via admin_bewise was successful')
+
+# Testcase 3
 
 print("[==]: find_user_by_id via admin_topease")
 
@@ -224,7 +232,8 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users/5978a878-0208-472a-95c5-0a962268e408'
+#url = 'http://127.0.0.1:3000/api/v1/users/name/test1_topease'
+url = 'http://127.0.0.1:3000/api/v1/users/7986d6b3-f57c-489e-a645-859454cc997f'
 error_flag = False
 try:
   response = requests.get(url, headers=headers, timeout=5)

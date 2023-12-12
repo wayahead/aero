@@ -66,7 +66,8 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users/suspend/2b4fdbfb-2c1a-4338-881f-1ef196cb22e1'
+#url = 'http://127.0.0.1:3000/api/v1/users/name/suspend/admin_topease'
+url = 'http://127.0.0.1:3000/api/v1/users/suspend/a066902a-2b9b-4925-af8a-46a4322332e0'
 error_flag = False
 
 try:
@@ -103,7 +104,8 @@ finally:
 
 print("[==]: suspend_admin_bewise with superadmin")
 
-url = 'http://127.0.0.1:3000/api/v1/users/suspend/c0db4436-01d2-4717-afbc-11434d80c7e2'
+#url = 'http://127.0.0.1:3000/api/v1/users/name/suspend/admin_bewise'
+url = 'http://127.0.0.1:3000/api/v1/users/suspend/45372941-f53c-4327-a21b-f2d2a95539cd'
 error_flag = False
 
 try:
@@ -140,7 +142,8 @@ finally:
 
 print("[==]: suspend_superadmin_topease")
 
-url = 'http://127.0.0.1:3000/api/v1/users/suspend/39588444-d153-42fa-a3c4-5b3cad4471e5'
+#url = 'http://127.0.0.1:3000/api/v1/users/name/suspend/topease'
+url = 'http://127.0.0.1:3000/api/v1/users/suspend/59acad3e-64cd-4e3d-9bea-0612703d5f8b'
 error_flag = False
 
 try:
@@ -173,9 +176,12 @@ finally:
   else:
     print('-inf: suspend_superadmin_topease was successful')
 
+# Testcase 4
+
 print("[==]: suspend_superadmin_bewise")
 
-url = 'http://127.0.0.1:3000/api/v1/users/suspend/3400f904-4a19-424e-b13d-cf107787c6b8'
+#url = 'http://127.0.0.1:3000/api/v1/users/name/suspend/bewise'
+url = 'http://127.0.0.1:3000/api/v1/users/suspend/eb921519-b7fa-412a-823d-acb6f01b5e60'
 error_flag = False
 
 try:

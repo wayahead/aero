@@ -16,6 +16,8 @@ headers = {
   'Origin': 'windmill.com'
 }
 
+# Testcase 1
+
 print("[==]: delete_user_by_name via superadmin")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
@@ -96,6 +98,8 @@ finally:
   else:
     print('-inf: delete_user_by_name via superadmin was successful')
 
+# Testcase 2
+
 print("[==]: delete_user_by_name via admin_bewise")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
@@ -175,6 +179,8 @@ finally:
     exit(1)
   else:
     print('-inf: delete_user_by_name via admin_bewise was successful')
+
+# Testcase 3
 
 print("[==]: delete_user_by_id via admin_topease")
 

@@ -19,22 +19,22 @@ headers = {
 
 # Testcase 1
 
-print("testcase: sign_up with wrong customer")
+print("[==]: sign_up with wrong customer")
 error_flag = False
 data = json.dumps({
   "user": {
-    "name": "wayahead2009_w_wrong_customer",
-    "email": "wayahead2009_w_wrong_customer@live.com",
+    "name": "test_wrong",
+    "email": "test_wrong@wrong.com",
     "password": "WqA1yT2z",
     "password_confirmation": "WqA1yT2z",
-    "customer": "wrong customer"
+    "customer": "wrong_customer"
   }
 })
 
 try:
   response = requests.post(url, data=data, headers=headers, timeout=5)
   json_data = response.json()
-  print("inf:", response.status_code, json_data)
+  print("-inf:", response.status_code, json_data)
   if response.status_code != requests.codes.bad_request:
     error_flag = True
 # Handle ConnectionError
@@ -55,22 +55,23 @@ except ValueError as ve:
     print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('err: sign_up with wrong customer was failed')
+    print('*err: sign_up with wrong customer was failed')
     exit(1)
   else:
-    print('inf: sign_up with wrong customer was successful')
+    print('-inf: sign_up with wrong customer was successful')
 
 # Testcase 2
 
-print("testcase: sign_up with customer")
+print("[==]: sign_up with customer")
+
 error_falg = False
 data = json.dumps({
   "user": {
-    "name": "wayahead2009_w_customer",
-    "email": "wayahead2009_w_customer@live.com",
+    "name": "signup_topease",
+    "email": "signup_topease@tests.dev",
     "password": "WqA1yT2z",
     "password_confirmation": "WqA1yT2z",
-    "customer": "Bewise"
+    "customer": "Topease"
   }
 })
 
@@ -79,7 +80,7 @@ try:
   if response.status_code != requests.codes.created:
     error_flag = True
     json_data = response.json()
-    print("inf:", response.status_code, json_data)
+    print("-inf:", response.status_code, json_data)
 # Handle ConnectionError
 except requests.exceptions.ConnectionError as ce:
     error_flag = True
@@ -98,19 +99,19 @@ except ValueError as ve:
     print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('err: sign_up with customer was failed')
+    print('*err: sign_up with customer was failed')
     exit(1)
   else:
-    print('inf: sign_up with customer was successful')
+    print('-inf: sign_up with customer was successful')
 
 # Testcase 3
 
-print("testcase: sign_up without customer")
+print("[==]: sign_up without customer")
 error_flag = False
 data = json.dumps({
   "user": {
-    "name": "wayahead2009_wo_customer",
-    "email": "wayahead2009_wo_customer@live.com",
+    "name": "signup_test",
+    "email": "signup_test@tests.dev",
     "password": "WqA1yT2z",
     "password_confirmation": "WqA1yT2z"
   }
@@ -121,7 +122,7 @@ try:
   if response.status_code != requests.codes.created:
     error_flag = True
     json_data = response.json()
-    print("inf", response.status_code, json_data)
+    print("-inf", response.status_code, json_data)
 # Handle ConnectionError
 except requests.exceptions.ConnectionError as ce:
     error_flag = True
@@ -140,10 +141,10 @@ except ValueError as ve:
     print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('err: sign_up without customer was failed')
+    print('*err: sign_up without customer was failed')
     exit(1)
   else:
-    print('inf: sign_up without customer was successful')
+    print('-inf: sign_up without customer was successful')
     exit(0)
 
 # use $? in shell to check success or not

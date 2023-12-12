@@ -173,6 +173,8 @@ finally:
   else:
     print('-inf: suspend_superadmin_topease was successful')
 
+# Testcase 4
+
 print("[==]: suspend_superadmin_bewise")
 
 url = 'http://127.0.0.1:3000/api/v1/users/name/suspend/bewise'

@@ -67,7 +67,7 @@ headers = {
 }
 
 #url = 'http://127.0.0.1:3000/api/v1/users/name/passwd/admin_topease'
-url = 'http://127.0.0.1:3000/api/v1/users/passwd/2b4fdbfb-2c1a-4338-881f-1ef196cb22e1'
+url = 'http://127.0.0.1:3000/api/v1/users/passwd/a066902a-2b9b-4925-af8a-46a4322332e0'
 error_flag = False
 
 data = json.dumps({
@@ -112,7 +112,7 @@ finally:
 print("[==]: change_password_admin_bewise with superadmin")
 
 #url = 'http://127.0.0.1:3000/api/v1/users/name/passwd/admin_bewise'
-url = 'http://127.0.0.1:3000/api/v1/users/passwd/c0db4436-01d2-4717-afbc-11434d80c7e2'
+url = 'http://127.0.0.1:3000/api/v1/users/passwd/45372941-f53c-4327-a21b-f2d2a95539cd'
 error_flag = False
 
 data = json.dumps({
@@ -157,7 +157,7 @@ finally:
 print("[==]: change_password_superadmin_topease")
 
 #url = 'http://127.0.0.1:3000/api/v1/users/name/passwd/superadmin_topease'
-url = 'http://127.0.0.1:3000/api/v1/users/passwd/b4747071-bd15-474c-acf5-7e86f74101c4'
+url = 'http://127.0.0.1:3000/api/v1/users/passwd/6a7ff57e-7f33-4f76-bba3-fbec985625f5'
 error_flag = False
 
 data = json.dumps({
@@ -200,7 +200,7 @@ finally:
 print("[==]: change_password_superadmin_bewise")
 
 #url = 'http://127.0.0.1:3000/api/v1/users/name/passwd/superadmin_bewise'
-url = 'http://127.0.0.1:3000/api/v1/users/passwd/cbd73c02-3224-497a-9f28-73f82cbfc1a3'
+url = 'http://127.0.0.1:3000/api/v1/users/passwd/cbea955f-7f2d-494c-a1ab-41e133aff91e'
 error_flag = False
 
 data = json.dumps({

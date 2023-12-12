@@ -66,7 +66,8 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users/2b4fdbfb-2c1a-4338-881f-1ef196cb22e1'
+#url = 'http://127.0.0.1:3000/api/v1/users/name/admin_topease'
+url = 'http://127.0.0.1:3000/api/v1/users/a066902a-2b9b-4925-af8a-46a4322332e0'
 error_flag = False
 
 data = json.dumps({
@@ -117,7 +118,8 @@ finally:
 
 print("[==]: create_admin_bewise with superadmin")
 
-url = 'http://127.0.0.1:3000/api/v1/users/c0db4436-01d2-4717-afbc-11434d80c7e2'
+#url = 'http://127.0.0.1:3000/api/v1/users/name/admin_bewise'
+url = 'http://127.0.0.1:3000/api/v1/users/45372941-f53c-4327-a21b-f2d2a95539cd'
 error_flag = False
 
 data = json.dumps({
@@ -167,7 +169,8 @@ finally:
 
 print("[==]: create_superadmin_topease")
 
-url = 'http://127.0.0.1:3000/api/v1/users/b4747071-bd15-474c-acf5-7e86f74101c4'
+#url = 'http://127.0.0.1:3000/api/v1/users/name/superadmin_topease'
+url = 'http://127.0.0.1:3000/api/v1/users/6a7ff57e-7f33-4f76-bba3-fbec985625f5'
 error_flag = False
 
 data = json.dumps({
@@ -214,9 +217,12 @@ finally:
   else:
     print('-inf: create_superadmin_topease was successful')
 
+# Testcase 4
+
 print("[==]: create_superadmin_bewise")
 
-url = 'http://127.0.0.1:3000/api/v1/users/cbd73c02-3224-497a-9f28-73f82cbfc1a3'
+#url = 'http://127.0.0.1:3000/api/v1/users/name/superadmin_bewise'
+url = 'http://127.0.0.1:3000/api/v1/users/cbea955f-7f2d-494c-a1ab-41e133aff91e'
 error_flag = False
 
 data = json.dumps({

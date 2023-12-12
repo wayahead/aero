@@ -67,7 +67,7 @@ headers = {
 }
 
 #url = 'http://127.0.0.1:3000/api/v1/users/name/activate/test1_topease'
-url = 'http://127.0.0.1:3000/api/v1/users/activate/5978a878-0208-472a-95c5-0a962268e408'
+url = 'http://127.0.0.1:3000/api/v1/users/activate/7986d6b3-f57c-489e-a645-859454cc997f'
 error_flag = False
 
 try:
@@ -151,7 +151,7 @@ headers = {
 }
 
 #url = 'http://127.0.0.1:3000/api/v1/users/name/activate/test1_bewise'
-url = 'http://127.0.0.1:3000/api/v1/users/activate/5fea1ab8-59fa-4b18-9a27-53d64dc1fa90'
+url = 'http://127.0.0.1:3000/api/v1/users/activate/40899938-17c4-4d5f-83b8-1967c55db5d3'
 error_flag = False
 
 try:
@@ -235,7 +235,7 @@ headers = {
 }
 
 #url = 'http://127.0.0.1:3000/api/v1/users/name/activate/test1_topease'
-url = 'http://127.0.0.1:3000/api/v1/users/activate/5978a878-0208-472a-95c5-0a962268e408'
+url = 'http://127.0.0.1:3000/api/v1/users/activate/7986d6b3-f57c-489e-a645-859454cc997f'
 error_flag = False
 
 try:
@@ -319,7 +319,7 @@ headers = {
 }
 
 #url = 'http://127.0.0.1:3000/api/v1/users/name/activate/test1_bewise'
-url = 'http://127.0.0.1:3000/api/v1/users/activate/5fea1ab8-59fa-4b18-9a27-53d64dc1fa90'
+url = 'http://127.0.0.1:3000/api/v1/users/activate/40899938-17c4-4d5f-83b8-1967c55db5d3'
 error_flag = False
 
 try:

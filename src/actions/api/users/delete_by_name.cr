@@ -10,7 +10,6 @@ class Api::Users::DeleteByName < ApiAction
           details: "The user was not found"
         }, HTTP::Status::NOT_FOUND)
       else
-        puts "deleting"
         deleted_user = DeleteUser.delete!(user)
         json UserSerializer.new(deleted_user)
       end
@@ -27,7 +26,6 @@ class Api::Users::DeleteByName < ApiAction
             details: "The user was not found"
           }, HTTP::Status::NOT_FOUND)
         else
-          puts "deleting"
           deleted_user = DeleteUser.delete!(user)
           json UserSerializer.new(deleted_user)
         end
@@ -43,7 +41,6 @@ class Api::Users::DeleteByName < ApiAction
             details: "The user was not found"
           }, HTTP::Status::NOT_FOUND)
         else
-          puts "deleting"
           deleted_user = DeleteUser.delete!(user)
           json UserSerializer.new(deleted_user)
         end

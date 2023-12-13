@@ -119,7 +119,6 @@ class Api::Users::IndexWithDeleted < ApiAction
   end
 
   private def find_by_name(user_name : String)
-    puts "find by name"
     user = UserQuery.new
       .name(user_name)
       .with_soft_deleted

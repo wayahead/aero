@@ -15,9 +15,9 @@ class AccessSerializer < BaseSerializer
       status: @access.status,
       description: @access.description,
       preferences: @access.preferences,
+      user: @access.user_id.hexstring,
       created_at: @access.created_at,
       updated_at: @access.updated_at,
-      deleted_at: @access.soft_deleted_at
     }
   end
 end

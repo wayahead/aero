@@ -1,8 +1,4 @@
 class Access < BaseModel
-  # Include this module to add methods for
-  # soft deleting and restoring
-  include Avram::SoftDelete::Model
-
   struct Preferences
     include JSON::Serializable
 
@@ -16,8 +12,7 @@ class Access < BaseModel
     column secret : String
     column status : String
     column description : String?
-    column preferences : User::Preferences?, serialize: true
-    column soft_deleted_at : Time?
+    column preferences : Access::Preferences?, serialize: true
 
     belongs_to user : User
   end

@@ -18,15 +18,15 @@ headers = {
 
 # Testcase 1
 
-print("[==]: create_user_failed (different customer)")
+print("[==]: delete_access_superadmin")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
 
 data = json.dumps({
   "user": {
-    "email": "admin_bewise@bewise.dev",
-    "password": "WqA1yT2z",
+    "email": "wayahead@outlook.com",
+    "password": "@NqGaKv*237+",
   }
 })
 
@@ -54,10 +54,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: sign_in admin_bewise was failed')
+    print('*err: sign_in superadmin was failed')
     exit(1)
   else:
-    print('-inf: sign_in admin_bewise was successful')
+    print('-inf: sign_in superadmin was successful')
 
 headers = {
   'User-Agent': random_user_agent,
@@ -66,69 +66,12 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users'
+#url = 'http://127.0.0.1:3000/api/v1/accesses/app/testapp'
+url = 'http://127.0.0.1:3000/api/v1/accesses/b7fd8fc581fa43e3931e6c4d2b417c2f'
 error_flag = False
 
-data = json.dumps({
-  "user": {
-    "name": "test1_topease",
-    "email": "test1_topease@tests.dev",
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z",
-    "status": "created",
-    "customer": "topease",
-    "roles": ["maintainer", "operator"]
-  }
-})
-
 try:
-  response = requests.post(url, data=data, headers=headers, timeout=5)
-  # print("-inf:", response.headers)
-  json_data = response.json()
-  print("-inf:", response.status_code, json_data)
-  if response.status_code != requests.codes.forbidden:
-    error_flag = True
-# Handle ConnectionError
-except requests.exceptions.ConnectionError as ce:
-  error_flag = True
-  print('Connection error:', ce)
-# Handle Timeout
-except requests.exceptions.Timeout as te:
-  error_flag = True
-  print('Request timed out:', te)
-# Handle HTTPError
-except requests.exceptions.HTTPError as he:
-  error_flag = True
-  print('HTTP error occurred:', he)
-# Handle ValueError
-except ValueError as ve:
-  error_flag = True
-  print('JSON decoding error:', ve)
-finally:
-  if error_flag:
-    print('*err: create_user_failed (different customer) via admin_bewise was failed')
-    exit(1)
-  else:
-    print('-inf: create_users_failed (different customer) via admin_bewise was successful')
-
-# Testcase 2
-
-print("[==]: create_user via admin_bewise")
-
-url = 'http://127.0.0.1:3000/api/v1/users'
-error_flag = False
-
-data = json.dumps({
-  "user": {
-    "name": "test1_bewise",
-    "email": "test1_bewise@tests.dev",
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z"
-  }
-})
-
-try:
-  response = requests.post(url, data=data, headers=headers, timeout=5)
+  response = requests.delete(url, headers=headers, timeout=5)
   # print("-inf:", response.headers)
   json_data = response.json()
   print("-inf:", response.status_code, json_data)
@@ -152,14 +95,98 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: create_user with admin_bewise was failed')
+    print('*err: delete_access_superadmin was failed')
     exit(1)
   else:
-    print('-inf: create_user with admin_bewise was successful')
+    print('-inf: delete_access_superadmin was successful')
+
+# Testcase 2
+
+print("[==]: delete_access_superadmin_topease")
+
+url = 'http://127.0.0.1:3000/api/v1/sign_ins'
+error_flag = False
+
+data = json.dumps({
+  "user": {
+    "email": "superadmin_topease@topease.com",
+    "password": "@NqGaKv*237+",
+  }
+})
+
+try:
+  response = requests.post(url, data=data, headers=headers, timeout=5)
+  json_data = response.json()
+  # print("-inf:", response.status_code, json_data)
+  if response.status_code != requests.codes.ok:
+    error_flag = True
+# Handle ConnectionError
+except requests.exceptions.ConnectionError as ce:
+  error_flag = True
+  print('Connection error:', ce)
+# Handle Timeout
+except requests.exceptions.Timeout as te:
+  error_flag = True
+  print('Request timed out:', te)
+# Handle HTTPError
+except requests.exceptions.HTTPError as he:
+  error_flag = True
+  print('HTTP error occurred:', he)
+# Handle ValueError
+except ValueError as ve:
+  error_flag = True
+  print('JSON decoding error:', ve)
+finally:
+  if error_flag:
+    print('*err: sign_in superadmin was failed')
+    exit(1)
+  else:
+    print('-inf: sign_in superadmin was successful')
+
+headers = {
+  'User-Agent': random_user_agent,
+  'Content-type': 'application/json',
+  'Origin': 'windmill.com',
+  'Authorization': "Bearer "+json_data["token"]
+}
+
+#url = 'http://127.0.0.1:3000/api/v1/accesses/app/testapp'
+url = 'http://127.0.0.1:3000/api/v1/accesses/35656222fb7d4468a0e33aefd6b1c0d3'
+error_flag = False
+
+try:
+  response = requests.delete(url, headers=headers, timeout=5)
+  # print("-inf:", response.headers)
+  json_data = response.json()
+  print("-inf:", response.status_code, json_data)
+  if response.status_code != requests.codes.ok:
+    error_flag = True
+# Handle ConnectionError
+except requests.exceptions.ConnectionError as ce:
+  error_flag = True
+  print('Connection error:', ce)
+# Handle Timeout
+except requests.exceptions.Timeout as te:
+  error_flag = True
+  print('Request timed out:', te)
+# Handle HTTPError
+except requests.exceptions.HTTPError as he:
+  error_flag = True
+  print('HTTP error occurred:', he)
+# Handle ValueError
+except ValueError as ve:
+  error_flag = True
+  print('JSON decoding error:', ve)
+finally:
+  if error_flag:
+    print('*err: delete_access_superadmin_topease was failed')
+    exit(1)
+  else:
+    print('-inf: delete_access_superadmin_topease was successful')
 
 # Testcase 3
 
-print("[==]: create_user via admin_topease")
+print("[==]: delete_access_admin_topease")
 
 url = 'http://127.0.0.1:3000/api/v1/sign_ins'
 error_flag = False
@@ -195,10 +222,10 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: sign_in admin_topease was failed')
+    print('*err: sign_in admin was failed')
     exit(1)
   else:
-    print('-inf: sign_in admin_topease was successful')
+    print('-inf: sign_in admin was successful')
 
 headers = {
   'User-Agent': random_user_agent,
@@ -207,22 +234,12 @@ headers = {
   'Authorization': "Bearer "+json_data["token"]
 }
 
-url = 'http://127.0.0.1:3000/api/v1/users'
+#url = 'http://127.0.0.1:3000/api/v1/accesses/app/testapp'
+url = 'http://127.0.0.1:3000/api/v1/accesses/73d303d5183f442aaa02e6ab9a993d75'
 error_flag = False
 
-data = json.dumps({
-  "user": {
-    "name": "test1_topease",
-    "email": "test1_topease@tests.dev",
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z",
-    "status": "activated",
-    "roles": ["maintainer", "operator"]
-  }
-})
-
 try:
-  response = requests.post(url, data=data, headers=headers, timeout=5)
+  response = requests.delete(url, headers=headers, timeout=5)
   # print("-inf:", response.headers)
   json_data = response.json()
   print("-inf:", response.status_code, json_data)
@@ -246,10 +263,94 @@ except ValueError as ve:
   print('JSON decoding error:', ve)
 finally:
   if error_flag:
-    print('*err: create_user with admin_topease was failed')
+    print('*err: delete_access_admin_topease was failed')
     exit(1)
   else:
-    print('-inf: create_user with admin_topease was successful')
+    print('-inf: delete_access_admin_topease was successful')
+
+# Testcase 4
+
+print("[==]: delete_access_test_topease")
+
+url = 'http://127.0.0.1:3000/api/v1/sign_ins'
+error_flag = False
+
+data = json.dumps({
+  "user": {
+    "email": "test1_topease@tests.dev",
+    "password": "WqA1yT2z",
+  }
+})
+
+try:
+  response = requests.post(url, data=data, headers=headers, timeout=5)
+  json_data = response.json()
+  # print("-inf:", response.status_code, json_data)
+  if response.status_code != requests.codes.ok:
+    error_flag = True
+# Handle ConnectionError
+except requests.exceptions.ConnectionError as ce:
+  error_flag = True
+  print('Connection error:', ce)
+# Handle Timeout
+except requests.exceptions.Timeout as te:
+  error_flag = True
+  print('Request timed out:', te)
+# Handle HTTPError
+except requests.exceptions.HTTPError as he:
+  error_flag = True
+  print('HTTP error occurred:', he)
+# Handle ValueError
+except ValueError as ve:
+  error_flag = True
+  print('JSON decoding error:', ve)
+finally:
+  if error_flag:
+    print('*err: sign_in test_topease was failed')
+    exit(1)
+  else:
+    print('-inf: sign_in test_topease was successful')
+
+headers = {
+  'User-Agent': random_user_agent,
+  'Content-type': 'application/json',
+  'Origin': 'windmill.com',
+  'Authorization': "Bearer "+json_data["token"]
+}
+
+#url = 'http://127.0.0.1:3000/api/v1/accesses/app/testapp'
+url = 'http://127.0.0.1:3000/api/v1/accesses/3e403b4a5ed548888c03bf92d7129fee'
+error_flag = False
+
+try:
+  response = requests.delete(url, data=data, headers=headers, timeout=5)
+  # print("-inf:", response.headers)
+  json_data = response.json()
+  print("-inf:", response.status_code, json_data)
+  if response.status_code != requests.codes.ok:
+    error_flag = True
+# Handle ConnectionError
+except requests.exceptions.ConnectionError as ce:
+  error_flag = True
+  print('Connection error:', ce)
+# Handle Timeout
+except requests.exceptions.Timeout as te:
+  error_flag = True
+  print('Request timed out:', te)
+# Handle HTTPError
+except requests.exceptions.HTTPError as he:
+  error_flag = True
+  print('HTTP error occurred:', he)
+# Handle ValueError
+except ValueError as ve:
+  error_flag = True
+  print('JSON decoding error:', ve)
+finally:
+  if error_flag:
+    print('*err: delete_access_test_topease was failed')
+    exit(1)
+  else:
+    print('-inf: delete_access_test_topease was successful')
     exit(0)
 
 # use $? in shell to check success or not

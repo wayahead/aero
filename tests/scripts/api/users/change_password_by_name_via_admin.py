@@ -70,10 +70,8 @@ url = 'http://127.0.0.1:3000/api/v1/users/name/passwd/test1_topease'
 error_flag = False
 
 data = json.dumps({
-  "user": {
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z",
-  }
+  "password": "WqA1yT2z",
+  "password_confirmation": "WqA1yT2z",
 })
 
 try:
@@ -160,10 +158,8 @@ url = 'http://127.0.0.1:3000/api/v1/users/name/passwd/test1_bewise'
 error_flag = False
 
 data = json.dumps({
-  "user": {
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z",
-  }
+  "password": "WqA1yT2z",
+  "password_confirmation": "WqA1yT2z",
 })
 
 try:
@@ -250,10 +246,8 @@ url = 'http://127.0.0.1:3000/api/v1/users/name/passwd/test1_topease'
 error_flag = False
 
 data = json.dumps({
-  "user": {
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z",
-  }
+  "password": "WqA1yT2z",
+  "password_confirmation": "WqA1yT2z",
 })
 
 try:
@@ -340,10 +334,8 @@ url = 'http://127.0.0.1:3000/api/v1/users/name/passwd/test1_bewise'
 error_flag = False
 
 data = json.dumps({
-  "user": {
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z",
-  }
+  "password": "WqA1yT2z",
+  "password_confirmation": "WqA1yT2z",
 })
 
 try:

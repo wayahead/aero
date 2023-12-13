@@ -1,5 +1,4 @@
 class ChangePassword < User::SaveOperation
-  param_key :user
   include PasswordValidations
 
   attribute password : String

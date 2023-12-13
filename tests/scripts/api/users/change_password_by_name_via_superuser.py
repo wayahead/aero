@@ -70,10 +70,8 @@ url = 'http://127.0.0.1:3000/api/v1/users/name/passwd/admin_topease'
 error_flag = False
 
 data = json.dumps({
-  "user": {
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z",
-  }
+  "password": "WqA1yT2z",
+  "password_confirmation": "WqA1yT2z",
 })
 
 try:
@@ -114,10 +112,8 @@ url = 'http://127.0.0.1:3000/api/v1/users/name/passwd/admin_bewise'
 error_flag = False
 
 data = json.dumps({
-  "user": {
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z",
-  }
+  "password": "WqA1yT2z",
+  "password_confirmation": "WqA1yT2z",
 })
 
 try:
@@ -158,10 +154,8 @@ url = 'http://127.0.0.1:3000/api/v1/users/name/passwd/superadmin_topease'
 error_flag = False
 
 data = json.dumps({
-  "user": {
-    "password": "@NqGaKv*237+",
-    "password_confirmation": "@NqGaKv*237+",
-  }
+  "password": "@NqGaKv*237+",
+  "password_confirmation": "@NqGaKv*237+",
 })
 
 try:
@@ -194,16 +188,16 @@ finally:
   else:
     print('-inf: change_password_superadmin_topease was successful')
 
+# Testcase 4
+
 print("[==]: change_password_superadmin_bewise")
 
 url = 'http://127.0.0.1:3000/api/v1/users/name/passwd/superadmin_bewise'
 error_flag = False
 
 data = json.dumps({
-  "user": {
-    "password": "@NqGaKv*237+",
-    "password_confirmation": "@NqGaKv*237+",
-  }
+  "password": "@NqGaKv*237+",
+  "password_confirmation": "@NqGaKv*237+",
 })
 
 try:

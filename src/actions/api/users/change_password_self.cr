@@ -1,12 +1,7 @@
-class ChangePasswordSelfRequestUser
-  include JSON::Serializable
-  property password : String?
-  property password_confirmation : String?
-end
-
 class ChangePasswordSelfRequest
   include JSON::Serializable
-  property user : ChangePasswordSelfRequestUser
+  property password : String
+  property password_confirmation : String
 end
 
 class Api::Users::PasswordSelf < ApiAction
@@ -15,7 +10,11 @@ class Api::Users::PasswordSelf < ApiAction
   put "/me/passwd" do
     begin
       req = ChangePasswordSelfRequest.from_json(params.body)
-      updated_user = ChangePassword.update!(current_user, params)
+      updated_user = ChangePassword.update!(
+        current_user,
+        password: req.password,
+        password_confirmation: req.password_confirmation
+      )
       json UserSerializer.new(updated_user)
     rescue JSON::SerializableError
       json({

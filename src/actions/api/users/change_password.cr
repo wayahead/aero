@@ -1,12 +1,7 @@
-class ChangePasswordRequestUser
-  include JSON::Serializable
-  property password : String?
-  property password_confirmation : String?
-end
-
 class ChangePasswordRequest
   include JSON::Serializable
-  property user : ChangePasswordRequestUser
+  property password : String
+  property password_confirmation : String
 end
 
 class Api::Users::Password < ApiAction
@@ -35,7 +30,11 @@ class Api::Users::Password < ApiAction
           end
         end
 
-        updated_user = ChangePassword.update!(user, params)
+        updated_user = ChangePassword.update!(
+          user,
+          password: req.password,
+          password_confirmation: req.password_confirmation
+        )
         json UserSerializer.new(updated_user)
       end
     rescue JSON::SerializableError

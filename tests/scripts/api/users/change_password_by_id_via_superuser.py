@@ -71,10 +71,8 @@ url = 'http://127.0.0.1:3000/api/v1/users/passwd/a066902a-2b9b-4925-af8a-46a4322
 error_flag = False
 
 data = json.dumps({
-  "user": {
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z",
-  }
+  "password": "WqA1yT2z",
+  "password_confirmation": "WqA1yT2z",
 })
 
 try:
@@ -116,10 +114,8 @@ url = 'http://127.0.0.1:3000/api/v1/users/passwd/45372941-f53c-4327-a21b-f2d2a95
 error_flag = False
 
 data = json.dumps({
-  "user": {
-    "password": "WqA1yT2z",
-    "password_confirmation": "WqA1yT2z",
-  }
+  "password": "WqA1yT2z",
+  "password_confirmation": "WqA1yT2z",
 })
 
 try:
@@ -161,10 +157,8 @@ url = 'http://127.0.0.1:3000/api/v1/users/passwd/6a7ff57e-7f33-4f76-bba3-fbec985
 error_flag = False
 
 data = json.dumps({
-  "user": {
-    "password": "@NqGaKv*237+",
-    "password_confirmation": "@NqGaKv*237+",
-  }
+  "password": "@NqGaKv*237+",
+  "password_confirmation": "@NqGaKv*237+",
 })
 
 try:
@@ -204,10 +198,8 @@ url = 'http://127.0.0.1:3000/api/v1/users/passwd/cbea955f-7f2d-494c-a1ab-41e133a
 error_flag = False
 
 data = json.dumps({
-  "user": {
-    "password": "@NqGaKv*237+",
-    "password_confirmation": "@NqGaKv*237+",
-  }
+  "password": "@NqGaKv*237+",
+  "password_confirmation": "@NqGaKv*237+",
 })
 
 try:

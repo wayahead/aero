@@ -22,7 +22,7 @@ module Api::Auth::Helpers
 
   private def user_from_auth_token(token : String) : User?
     UserToken.decode_user_id(token).try do |user_id|
-      UserQuery.new.id(user_id).first?
+      UserQuery.new.id(user_id).status("activated").first?
     end
   end
 end

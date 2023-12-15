@@ -8,4 +8,5 @@ start_server
 *.local.cr
 .env
 /tmp
+/public
 /tests/**/__pycache__

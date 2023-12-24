@@ -1,6 +1,6 @@
 # aero
 
-This is a project written using [Lucky](https://luckyframework.org). Enjoy!
+This is a project written using [Lucky](https://luckyframework.org), the purpose was to create basic functions for full features of user management, with access-token based authentication.
 
 ### Setting up the project
 
